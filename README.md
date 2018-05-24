@@ -54,7 +54,7 @@ Whether it be road trips, domestic, international, or even staycations in your o
     
     `yarn && cd client && yarn && cd ..`
 
-6. Run `yarn dev` (this will run both the client and server) 
+6. Run `yarn start` or `npm start` (this will run both the client and server) 
 
 ---
 
