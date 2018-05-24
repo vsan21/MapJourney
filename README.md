@@ -46,12 +46,15 @@ Whether it be road trips, domestic, international, or even staycations in your o
     ```
     - Request your own Yelp API key at https://www.yelp.com/developers/faq
 
-5. Install all dependencies (will need to do twice)
+5. Install all dependencies
+    
+    `npm i && cd client && npm i && cd ..`
+    
+    or 
+    
+    `yarn && cd client && yarn && cd ..`
 
-    - From root directory: `npm install` or `yarn`
-    - Then: `cd client` and `npm install`
-
-6. Go back out to root directory `cd ../` and run `yarn dev` (this will run both the client and server) 
+6. Run `yarn dev` (this will run both the client and server) 
 
 ---
 
