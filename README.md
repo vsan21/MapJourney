@@ -60,10 +60,11 @@ Whether it be road trips, domestic, international, or even staycations in your o
 
 ### Current features: 
 - Searching through Yelp to find attractions, restaurants, hikes, etc. 
-- Ability to pin results onto a map with customized category icons 
-- User log in/sign up
+- Backend
 
 ### Later features: 
+- Ability to pin results onto a map with customized category icons 
+- User log in/sign up
 - Route travel between pins based on multiple modes of transportation
 - Save multiple maps of different cities/countries 
 - Allow user to go into "Storymode" 
