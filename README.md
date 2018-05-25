@@ -10,7 +10,8 @@ Whether it be road trips, domestic, international, or even staycations in your o
 ---
 
 ### MySQL Database Setup: 
-1. Download `Sequel Pro` (http://www.sequelpro.com/)
+1. Install mysql. If you have brew, run `brew install mysql`, then start with `brew services start mysql` (otherwise you can download [MySQL](https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html)) 
+1. Download [Sequel Pro](http://www.sequelpro.com/)
 2. Open `Sequel Pro`, and enter the following to establish a connection: 
 
     ```
@@ -20,9 +21,9 @@ Whether it be road trips, domestic, international, or even staycations in your o
 3. Create a new database named `mapjourney`
 4. Within the `mapjourney` database, create three tables: `users`, `maps`, `pins`
 
-    - In `users` table, add these columns: `first_name`, `last_name`, `email`, `password`, `date`
-    - In `maps` table, add these columns: `title`, `location`, `user_id` (user_id is a FK) 
-    - In `pins` table, add these columns: `place_name`, `address`, `map_category`, `map_id` (map_id is a FK)
+    - In `users` table, add these columns: `first_name` (VARCHAR), `last_name` (VARCHAR), `email` (VARCHAR), `password` (VARCHAR), `date`(TIMESTAMP)
+    - In `maps` table, add these columns: `title` (VARCHAR), `location` (VARCHAR), `user_id` (INT, set user_id as a FK) 
+    - In `pins` table, add these columns: `place_name` (VARCHAR), `address` (VARCHAR), `map_category` (VARCHAR), `map_id` (INT, set map_id as a FK)
 
 ### Application Setup: 
 
@@ -45,6 +46,7 @@ Whether it be road trips, domestic, international, or even staycations in your o
     MYSQL_KEY=<Your-SQL-Key>
     ```
     - Request your own Yelp API key at https://www.yelp.com/developers/faq
+    - You can set your own SQL Key to secure your database, otherwise it can be `""`
 
 5. Install all dependencies
     
