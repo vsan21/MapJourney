@@ -11,65 +11,52 @@ class App extends Component {
     location: ''
   };
   
-  /*componentDidMount() {
-    fetch('/yelp')
-      .then(res => {
-        return res.json()
-      })
-      .then(res => {
-        // console.log(res);
-        this.setState({response: res.express});
-
-        // let resultOutput = "<ul class='list-group'>";
-        // for(let business of res){
-        //   resultOutput += `<li class='list-group-item'>${business.name}</li>`;
-        // }
-        // resultOutput += "</ul>";
-
-        // document.getElementById('result-output').innerHTML = resultOutput;
-      })
-      .catch(error => {
-        console.log(error)
-      });
-  }*/
+  // componentDidMount() {
+  //   fetch('/yelp')
+  //     .then(res => {
+  //       return res.json()
+  //     })
+  //     .then(res => {
+  //       // console.log(res);
+  //       this.setState({response: res.express});
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //     });
+  // }
 
   handleSubmit = (e) => {
     //prevent form from refreshing and redirecting to '/yelp/results'
     e.preventDefault();
-    try {
-      //grabbing the users's input 
-      const term = e.target.term.value;
-      const location = e.target.location.value;
-
-      axios({
-        method: 'post',
-        url: '/yelp/results',
-        data: {
-          location: location,
-          term: term
-        },
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-        .then(res => {
-          let results = res.data;
-          console.log(res.data);
-          
-          let resultOutput = "<ul class='list-group'>";
-          results.forEach((business) => {
-            resultOutput += `<li>${business.name}</li>`
-          })
-          resultOutput += "</ul>";
-
-          document.getElementById('result-output').innerHTML = resultOutput;
-
-        })
     
-    }
-    catch(err) {
-      console.log(err)
-    }
+    //grabbing the users's input 
+    const term = e.target.term.value;
+    const location = e.target.location.value;
+
+    axios({
+      method: 'post',
+      url: '/yelp/results',
+      data: {
+        location: location,
+        term: term
+      },
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res => {
+        let results = res.data;
+        console.log(res.data);
+
+        let resultOutput = "<ul class='list-group'>";
+        results.forEach((business) => {
+          resultOutput += `<li>${business.name}</li>`
+        })
+        resultOutput += "</ul>";
+
+        document.getElementById('result-output').innerHTML = resultOutput;
+      })
+      .catch(err => console.log(err))
     
   }
 
@@ -83,7 +70,6 @@ class App extends Component {
         <p className="App-intro">{this.state.response}</p>
 
         <Search handleSubmit={this.handleSubmit}/>
-
         <div id='result-output'></div>
 
       </div>

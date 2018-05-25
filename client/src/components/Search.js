@@ -6,7 +6,7 @@ export class Search extends Component {
             <div>
                 <form onSubmit={this.props.handleSubmit}>
                     <input type='text' name='location' placeholder='Location' />
-
+                    
                     <input type='text' name='term' placeholder='Activity' />
                     <button type='submit'>Search</button>
                 </form>

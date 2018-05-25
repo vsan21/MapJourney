@@ -3,17 +3,14 @@ const express = require('express');
 const axios = require('axios');
 //to load environment variables from .env file
 require('dotenv').config();
-const mysql = require('mysql');
 //Express Validator 
 const { body,validationResult } = require('express-validator/check');
 //Body Parser: allow us to grab information from POST (extract JSON out of it)
 const bodyParser = require('body-parser');
 const app = express();
-// const postData = require('./client/src/App.js');
 
 //KEYS 
 const YELP_API_KEY = process.env.YELP_API_KEY;
-const MYSQL_KEY = process.env.MYSQL_KEY;
 
 //To enable CORS in server
 app.use((req, res, next) => {
@@ -21,24 +18,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 })
-
-//create MySQL connection
-// const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: `${MYSQL_KEY}`,
-//   database: 'test'
-// })
-
-// connection.connect((err) => {
-//   if(err) throw err;
-//   console.log('You are now connected to the database...');
-
-//   var person = {name: 'Larry', age: 41, email: 'larrybird@gmail.com'};
-//   connection.query('INSERT INTO people SET ?', person, (err, results, fields) => {
-//     if(err) throw err; 
-//   })
-// })
 
 //Body Parser Middleware
 app.use(bodyParser.json());
@@ -64,12 +43,10 @@ app.post('/yelp/results', (req, res) => {
     .then((result) => {
       const body = result.data.businesses;
       res.json(body);
-
     })
     .catch((err) => {
       console.log(err);
     }) 
-  
 })
 
 const port = process.env.PORT || 8000;
