@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {Search} from './components/Search';
+import {Nav} from './components/Nav';
 
 class App extends Component {
   state = {
-    response: '',
     term: '',
     location: ''
   };
@@ -57,16 +57,12 @@ class App extends Component {
         document.getElementById('result-output').innerHTML = resultOutput;
       })
       .catch(err => console.log(err))
-    
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <Nav />
         <p className="App-intro">{this.state.response}</p>
 
         <Search handleSubmit={this.handleSubmit}/>

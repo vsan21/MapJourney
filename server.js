@@ -12,13 +12,6 @@ const app = express();
 //KEYS 
 const YELP_API_KEY = process.env.YELP_API_KEY;
 
-//To enable CORS in server
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
-
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
