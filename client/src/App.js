@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+import {Search} from './components/Search';
 
 class App extends Component {
   state = {
@@ -9,46 +11,67 @@ class App extends Component {
     location: ''
   };
   
-  // componentDidMount() {
-  //   fetch('/yelp')
-  //     .then(res => {
-  //       return res.json()
-  //     })
-  //     .then(res => {
-  //       // console.log(res);
-  //       this.setState({response: res.express});
+  /*componentDidMount() {
+    fetch('/yelp')
+      .then(res => {
+        return res.json()
+      })
+      .then(res => {
+        // console.log(res);
+        this.setState({response: res.express});
 
-  //       // let resultOutput = "<ul class='list-group'>";
-  //       // for(let business of res){
-  //       //   resultOutput += `<li class='list-group-item'>${business.name}</li>`;
-  //       // }
-  //       // resultOutput += "</ul>";
+        // let resultOutput = "<ul class='list-group'>";
+        // for(let business of res){
+        //   resultOutput += `<li class='list-group-item'>${business.name}</li>`;
+        // }
+        // resultOutput += "</ul>";
 
-  //       // document.getElementById('result-output').innerHTML = resultOutput;
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //     });
-  // }
+        // document.getElementById('result-output').innerHTML = resultOutput;
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }*/
 
   handleSubmit = (e) => {
     //prevent form from refreshing and redirecting to '/yelp/results'
     e.preventDefault();
-    // const data = new FormData(e.target);
-    // console.log(e.target);
-    // console.log(data);
+    try {
+      //grabbing the users's input 
+      const term = e.target.term.value;
+      const location = e.target.location.value;
 
-    //this fetches 
-    fetch('/yelp/results', {
-      method: 'POST',
-      body: {location: 'san francisco', term: 'crepes'}
-    })
-      // turns readableStream into json 
-      .then(res => res.json())
-      .then(res => console.log(res))
+      axios({
+        method: 'post',
+        url: '/yelp/results',
+        data: {
+          location: location,
+          term: term
+        },
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(res => {
+          let results = res.data;
+          console.log(res.data);
+          
+          let resultOutput = "<ul class='list-group'>";
+          results.forEach((business) => {
+            resultOutput += `<li>${business.name}</li>`
+          })
+          resultOutput += "</ul>";
+
+          document.getElementById('result-output').innerHTML = resultOutput;
+
+        })
+    
+    }
+    catch(err) {
+      console.log(err)
+    }
     
   }
-
 
   render() {
     return (
@@ -59,11 +82,7 @@ class App extends Component {
         </header>
         <p className="App-intro">{this.state.response}</p>
 
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' name='location' placeholder='Location' />
-          <input type='text' name='term' placeholder='Activity' />
-          <button type='submit'>Search</button>
-        </form>
+        <Search handleSubmit={this.handleSubmit}/>
 
         <div id='result-output'></div>
 

@@ -5,9 +5,9 @@
   "author": "Vivian San",
   "license": "MIT",
   "scripts": {
+    "start": "concurrently \"yarn server\" \"yarn client\"",
     "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

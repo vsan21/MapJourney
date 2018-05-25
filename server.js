@@ -15,23 +15,30 @@ const app = express();
 const YELP_API_KEY = process.env.YELP_API_KEY;
 const MYSQL_KEY = process.env.MYSQL_KEY;
 
+//To enable CORS in server
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+
 //create MySQL connection
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: `${MYSQL_KEY}`,
-  database: 'test'
-})
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: `${MYSQL_KEY}`,
+//   database: 'test'
+// })
 
-connection.connect((err) => {
-  if(err) throw err;
-  console.log('You are now connected to the database...');
+// connection.connect((err) => {
+//   if(err) throw err;
+//   console.log('You are now connected to the database...');
 
-  var person = {name: 'Larry', age: 41, email: 'larrybird@gmail.com'};
-  connection.query('INSERT INTO people SET ?', person, (err, results, fields) => {
-    if(err) throw err; 
-  })
-})
+//   var person = {name: 'Larry', age: 41, email: 'larrybird@gmail.com'};
+//   connection.query('INSERT INTO people SET ?', person, (err, results, fields) => {
+//     if(err) throw err; 
+//   })
+// })
 
 //Body Parser Middleware
 app.use(bodyParser.json());
@@ -43,26 +50,21 @@ app.get('/yelp', (req, res) => {
 
 app.post('/yelp/results', (req, res) => {
   // req.checkBody('location', 'Location is Required').notEmpty();
-  console.log(req.body);
-  let location = req.body.location;
-  let term = req.body.term;
-
+  
+  //req.body is the data object from axios FE
   axios.get('https://api.yelp.com/v3/businesses/search', {
     params: {
-      'term': `${term}`,
-      'location': `${location}`
+      'term': req.body.term,
+      'location': req.body.location
     },
     headers: {
       'Authorization': `Bearer ${YELP_API_KEY}`
     }
   })
     .then((result) => {
-      const body = result.data;
-      console.log(body);
+      const body = result.data.businesses;
+      res.json(body);
 
-      // console.log(JSON.parse(JSON.stringify(body)));
-      // res.send(body);
-      // res.json({express: body})
     })
     .catch((err) => {
       console.log(err);
