@@ -7,6 +7,7 @@ import { Results } from './components/Results';
 
 class App extends Component {
   state = {
+    city: [],
     results: []
   };
   
@@ -44,15 +45,25 @@ class App extends Component {
       }
     })
       .then(res => {
+        //grabbing the city's coordinates to be used for google maps "center" required option
+        let cityCoordinates = res.data.region.center;
         let data = res.data.businesses;
+        console.log(data);
         
         let places = [];
         data.forEach(item => {
-          places.push({name: item.name, coordinates: item.coordinates, address: item.location.display_address, image: item.image_url});
+          places.push({
+            id: item.id, 
+            name: item.name, 
+            stars: item.review_count,
+            rating: item.rating,
+            coordinates: item.coordinates, 
+            address: item.location.display_address, 
+            image: item.image_url});
         })
 
-        this.setState({results: places})
-        console.log(this.state.results);
+        this.setState({city: cityCoordinates, results: places});
+        console.log(this.state.city, this.state.results);
     
       })
       .catch(err => console.log(err))
@@ -63,7 +74,7 @@ class App extends Component {
       <div>
         <Nav />
         <Search handleSubmit={this.handleSubmit}/>
-
+        <br />
         <Results results={this.state.results}/> 
       </div>
     );
