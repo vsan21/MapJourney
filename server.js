@@ -34,7 +34,7 @@ app.post('/yelp/results', (req, res) => {
     }
   })
     .then((result) => {
-      const body = result.data.businesses;
+      const body = result.data;
       res.json(body);
     })
     .catch((err) => {

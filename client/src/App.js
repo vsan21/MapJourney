@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import logo from './logo.svg';
 import './App.css';
-import {Search} from './components/Search';
-import {Nav} from './components/Nav';
+import { Search } from './components/Search';
+import { Nav } from './components/Nav';
+import { Results } from './components/Results';
 
 class App extends Component {
   state = {
-    term: '',
-    location: ''
+    results: []
   };
   
   // componentDidMount() {
@@ -45,29 +44,27 @@ class App extends Component {
       }
     })
       .then(res => {
-        let results = res.data;
-        console.log(res.data);
-
-        let resultOutput = "<ul class='list-group'>";
-        results.forEach((business) => {
-          resultOutput += `<li>${business.name}</li>`
+        let data = res.data.businesses;
+        
+        let places = [];
+        data.forEach(item => {
+          places.push({name: item.name, coordinates: item.coordinates, address: item.location.display_address, image: item.image_url});
         })
-        resultOutput += "</ul>";
 
-        document.getElementById('result-output').innerHTML = resultOutput;
+        this.setState({results: places})
+        console.log(this.state.results);
+    
       })
       .catch(err => console.log(err))
   }
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Nav />
-        <p className="App-intro">{this.state.response}</p>
-
         <Search handleSubmit={this.handleSubmit}/>
-        <div id='result-output'></div>
 
+        <Results results={this.state.results}/> 
       </div>
     );
   }
