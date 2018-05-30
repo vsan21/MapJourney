@@ -55,11 +55,13 @@ class App extends Component {
           places.push({
             id: item.id, 
             name: item.name, 
-            stars: item.review_count,
-            rating: item.rating,
+            reviewCount: item.review_count,
+            stars: item.rating,
             coordinates: item.coordinates, 
             address: item.location.display_address, 
-            image: item.image_url});
+            image: item.image_url,
+            yelpLink: item.url
+          });
         })
 
         this.setState({city: cityCoordinates, results: places});
