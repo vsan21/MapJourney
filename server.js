@@ -16,11 +16,11 @@ const YELP_API_KEY = process.env.YELP_API_KEY;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get('/yelp', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
+// app.get('/yelp', (req, res) => {
+//   res.send({ express: 'Hello From Express' });
+// });
 
-app.post('/yelp/results', (req, res) => {
+app.post('/results', (req, res) => {
   // req.checkBody('location', 'Location is Required').notEmpty();
   
   //req.body is the data object from axios FE
@@ -35,7 +35,7 @@ app.post('/yelp/results', (req, res) => {
   })
     .then((result) => {
       const body = result.data;
-      res.json(body);
+      res.send(body);
     })
     .catch((err) => {
       console.log(err);

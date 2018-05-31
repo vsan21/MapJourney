@@ -11,7 +11,6 @@ import star4_half from '../images/small_4_half@3x.png';
 import star5 from '../images/small_5@3x.png';
 import logo from '../images/yelp-logo.png';
 
-
 export class Results extends Component {
     render () { 
         const reviewStyle = {
@@ -22,11 +21,11 @@ export class Results extends Component {
             marginTop: '2px'
         }
 
-        if (!this.props.results) {
-            return;
+        if (!this.props.location.state.results) {
+            return null;
         }
         
-        var listItems = this.props.results.map(item => {
+        var listItems = this.props.location.state.results.map(item => {
             let stars;
             if(item.stars === 0) {
                 stars = <img src={star0} alt='0 star' width='' />
@@ -63,7 +62,7 @@ export class Results extends Component {
                         <tbody>
                             <tr>
                                 <td width='10%' align='center'>
-                                    <img src={item.image} alt='{item.name}' width='150px' height='110px' />
+                                    <img src={item.image} alt={item.name} width='150px' height='110px' />
                                 </td>
                                 <td width='60%' align='center'>
                                     <h3 align='left'>{item.name}</h3>
@@ -82,13 +81,12 @@ export class Results extends Component {
                     </table>
                 </div>
             )
-
         })
 
         return (
             <div>
                 {listItems}
-            </div>
+            </div> 
         );
     }
 }
