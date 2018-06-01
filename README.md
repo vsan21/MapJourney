@@ -9,27 +9,27 @@ Whether it be road trips, domestic, international, or even staycations in your o
 
 ---
 
-### MySQL Database Setup: 
-1. Install mysql. If you have brew, run `brew install mysql`, then start with `brew services start mysql` (otherwise you can download [MySQL](https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html)) 
+### Pre-setup: 
 1. Download [Sequel Pro](http://www.sequelpro.com/)
-2. Open `Sequel Pro`, and enter the following to establish a connection: 
+2. Install mysql. If you have brew, run `brew install mysql`, then start with `brew services start mysql` (otherwise you can download [MySQL](https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html)) 
+3. Add your user and password to the "my.cnf" file:
+
+    - `cd ../../usr/local/etc`
+    - `code my.cnf` (vscode), `atom my.cnf` (atom)
+    - Add the following: 
 
     ```
-    Host: 127.0.0.1
-    Username: root
+    [client]
+    user = root
+    password = <your-password>
     ```
-3. Create a new database named `mapjourney`
-4. Within the `mapjourney` database, create three tables: `users`, `maps`, `pins`
-
-    - In `users` table, add these columns: `first_name` (VARCHAR), `last_name` (VARCHAR), `email` (VARCHAR), `password` (VARCHAR), `date`(TIMESTAMP)
-    - In `maps` table, add these columns: `title` (VARCHAR), `location` (VARCHAR), `user_id` (INT, set user_id as a FK) 
-    - In `pins` table, add these columns: `place_name` (VARCHAR), `address` (VARCHAR), `map_category` (VARCHAR), `map_id` (INT, set map_id as a FK)
+    - `cd ~/desktop`
 
 ### Application Setup: 
 
-1. Go onto your desktop and then clone this repo to your local machine
+1. Clone this repo to your local machine
 
-    `cd desktop` and `git clone https://github.com/vsan21/MapJourney.git`
+    `git clone https://github.com/vsan21/MapJourney.git`
 
 2. Go into that project folder
 
@@ -42,10 +42,12 @@ Whether it be road trips, domestic, international, or even staycations in your o
 4. Inside of the .env file, add: 
 
     ```
-    YELP_API_KEY=<Your-API-Key>
+    YELP_API_KEY=<Your-Yelp-API-Key>
+    GOOGLE_API_KEY=<Your-Google-API-Key>
     MYSQL_KEY=<Your-SQL-Key>
     ```
-    - Request your own Yelp API key at https://www.yelp.com/developers/faq
+    - Yelp API:  https://www.yelp.com/developers/faq
+    - Google Maps API: https://cloud.google.com/maps-platform/
     - You can set your own SQL Key to secure your database, otherwise it can be `""`
 
 5. Install all dependencies
@@ -58,15 +60,36 @@ Whether it be road trips, domestic, international, or even staycations in your o
 
 6. Run `yarn start` or `npm start` (this will run both the client and server) 
 
+7. Open a new terminal tab, run the bash script file to **_create_** the database/tables:
+
+    - `cd database` 
+    - `chmod +rwx ./setup.sh` 
+    - `./setup.sh` 
+
+8. To view the database on Sequel Pro. Enter the following to establish a connection: 
+
+    ```
+    Host: 127.0.0.1
+    Username: root
+    Password: <your-password>
+    ```
+
+8. If you want to **_teardown_** the database or any specific table(s) later: 
+
+    - `chmod +rwx ./teardown.sh`
+    - `./teardown.sh`
+
 ---
 
 ### Current features: 
-- Searching through Yelp to find attractions, restaurants, hikes, etc. 
+- Homepage search page (hrough Yelp to find attractions, restaurants, hikes, etc.)
+- Results display on new page
+- Click on specific searches to pin to map
 - Backend
+- User log in/sign up with Auth0
 
 ### Later features: 
-- Ability to pin results onto a map with customized category icons 
-- User log in/sign up
+- Customized map category icons 
 - Route travel between pins based on multiple modes of transportation
 - Save multiple maps of different cities/countries 
 - Allow user to go into "Storymode" 
