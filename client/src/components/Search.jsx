@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Search.css';
+import video from '../images/background-video.mp4';
 
 export class Search extends Component {
     state = {
@@ -57,22 +58,24 @@ export class Search extends Component {
 
     render() {
         return (
-            <div className='cover'>
-              <form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
-                  <input type='text' name='location' placeholder='Location' />
+          <div className='cover'>
+            <form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
+              <input type='text' name='term' placeholder='Ex. Hikes, Museums...' />
+              <input type='text' name='location' placeholder='Ex. San Francisco, CA' />
 
-                  <input type='text' name='term' placeholder='Activity' />
-                  <button type='submit'>Search</button>
-              </form>
+              <button type='submit'>Search</button>
+            </form>
+            <video class='drone shots' src="{video}" autoplay loop></video>
 
-              {/* redirecting the results to a new page */}
-              {this.state.results.length > 0 && 
-                  <Redirect to ={{
-                      pathname: '/results',
-                      state: {results: this.state.results}
-                  }} />
-              }
-            </div>       
+            {/* redirecting the results to a new page */}
+            {this.state.results.length > 0 &&
+              <Redirect to={{
+                pathname: '/results',
+                state: { results: this.state.results }
+              }} />
+            }
+
+          </div>       
         );
     }
 }

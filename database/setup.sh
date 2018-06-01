@@ -4,13 +4,6 @@ set -e # Flag causes script to exit if there's an error
 # Create database 
 mysql -e "CREATE DATABASE tester;"
 echo "Database successfully created!"
-# mysql -e "show databases;"
-# echo "Switching to database..."
-
-##this command isn't working yet (can't select into db)
-# mysql -e "use tester;"
-# mysql -e "select database();"
-# mysql -D "tester" -e 
 
 # Create tables
 mysql -D tester -e "CREATE TABLE users (
@@ -39,8 +32,3 @@ mysql -D tester -e "CREATE TABLE pins (
 
 mysql -D tester -e "show tables;"
 
-
-# # One can also use variables in shell scripts denoted by $, and read in variables
-# echo "Enter your name:"
-# read name
-# echo "Hello, $name"

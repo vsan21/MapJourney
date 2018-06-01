@@ -8,6 +8,8 @@ html {
     box-sizing: inherit;
 }
 
+
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -22,7 +24,6 @@ body {
 
 /*Video*/
 
-
 /*Hack to get them to align properly */
 /* in the form, for all elements where type is not date */
 .flex-form > *:not([type="date"]) {
@@ -36,50 +37,45 @@ body {
     border-top: 1px solid #FF5A5F;
     border-bottom: 1px solid #FF5A5F;
     color:white;
+    border-radius: 5px;
+
 }
 
 /* making sure to put form in front of background video */
-/* .flex-form {
+.flex-form {
     z-index: 10;
     position: relative;
-} */
+}
 
-/* .flex-form > * {
-    border:0;
-    padding:10px;
-    background:white;
-    line-height:50px;
+/* for every element in the form */
+.flex-form > * {
+    border: 0;
+    padding: 10px;
+    background: white;
+    line-height: 50px;
     font-size: 20px;
-    border-radius:0;
-    outline:0;
-    border-right:1px solid rgba(0,0,0,0.2);
-    -webkit-appearance: none;
-} */
+    border-radius: 0;
+    outline: 0;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    /* -webkit-appearance: none; */
+}
 
-/* .flex-form > *:last-child {
+/* taking off the border shadow from button */
+.flex-form > *:last-child {
     border-right: 0;
-} */
+}
 
 /*Flexbox Starts Here*/
-/* .cover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-  
-/* .flex-form {
-    display: flex;
-    border: 20px solid rgba(0,0,0,0.3);
-    border-radius: 5px;
-} */
-
-/* input[type='search'] {
-    flex-basis: 500px;
-} */
-
+/* to center the form in the middle */
 .cover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+}
+  
+/* forms a gray border around the form */
+.flex-form {
+    display: flex;
+    border: 20px solid rgba(0,0,0,0.3);
+    border-radius: 5px;
 }
