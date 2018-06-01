@@ -9,7 +9,7 @@ import star3_half from '../images/small_3_half@3x.png';
 import star4 from '../images/small_4@3x.png';
 import star4_half from '../images/small_4_half@3x.png';
 import star5 from '../images/small_5@3x.png';
-import logo from '../images/yelp-logo.png';
+import logo from '../images/yelp-logo2.png';
 
 export class Results extends Component {
     render () { 
@@ -62,16 +62,16 @@ export class Results extends Component {
                         <tbody>
                             <tr>
                                 <td width='10%' align='center'>
-                                    <img src={item.image} alt={item.name} width='150px' height='110px' />
+                                    <img src={item.image} alt={item.name} width='230px' height='170px' />
                                 </td>
                                 <td width='60%' align='center'>
                                     <h3 align='left'>{item.name}</h3>
+                                    <p align='left'>{(item.address[0]) + ', ' + (item.address[1])}</p>                                    
                                     <p align='left'>
                                         {stars} 
                                         <a href={item.yelpLink}><img src={logo} alt={logo} style={logoStyle}/></a>
                                     </p>
                                     <p align='left' style={reviewStyle}>{item.reviewCount} Reviews</p>
-                                    <p align='left'>{(item.address[0]) + ', ' + (item.address[1])}</p>
                                 </td>
                                 <td width='10%' align='center'>
                                     <button>Add to Map</button>

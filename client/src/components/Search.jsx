@@ -1,31 +1,17 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import './Search.css';
 
 export class Search extends Component {
     state = {
         city: [],
         results: []
       };
-
-      // componentDidMount() {
-      //   fetch('/yelp')
-      //     .then(res => {
-      //       return res.json()
-      //     })
-      //     .then(res => {
-      //       // console.log(res);
-      //       this.setState({response: res.express});
-      //     })
-      //     .catch(error => {
-      //       console.log(error)
-      //     });
-      // }
     
       handleSubmit = (e) => {
         //prevent form from refreshing and redirecting to '/yelp/results'
         e.preventDefault();
-        // this.props.history.push('/results');
         
         //grabbing the users's input 
         const term = e.target.term.value;
@@ -71,20 +57,21 @@ export class Search extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit} autoComplete='off'>
-                    <input type='text' name='location' placeholder='Location' />
+            <div className='cover'>
+              <form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
+                  <input type='text' name='location' placeholder='Location' />
 
-                    <input type='text' name='term' placeholder='Activity' />
-                    <button type='submit'>Search</button>
-                </form>
-                {this.state.results.length > 0 && 
-                    <Redirect to ={{
-                        pathname: '/results',
-                        state: {results: this.state.results}
-                    }} />
-                }
+                  <input type='text' name='term' placeholder='Activity' />
+                  <button type='submit'>Search</button>
+              </form>
 
+              {/* redirecting the results to a new page */}
+              {this.state.results.length > 0 && 
+                  <Redirect to ={{
+                      pathname: '/results',
+                      state: {results: this.state.results}
+                  }} />
+              }
             </div>       
         );
     }

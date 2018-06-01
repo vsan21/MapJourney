@@ -1,0 +1,85 @@
+/* makes working with the box model a lot easier and flexible (includes padding and border, before it was separate and that would make our box look bigger than it is) */
+/* universal box sizing with inheritance */
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* need to set the height to 100vh so that we can move the form vertically */
+.cover  {
+    height:100vh;
+    width:100%;
+}
+
+/*Video*/
+
+
+/*Hack to get them to align properly */
+/* in the form, for all elements where type is not date */
+.flex-form > *:not([type="date"]) {
+    border-top:1px solid white;
+    border-bottom:1px solid white;
+}
+
+/* customizing search button */
+.flex-form > button {
+    background:#FF5A5F;
+    border-top: 1px solid #FF5A5F;
+    border-bottom: 1px solid #FF5A5F;
+    color:white;
+}
+
+/* making sure to put form in front of background video */
+/* .flex-form {
+    z-index: 10;
+    position: relative;
+} */
+
+/* .flex-form > * {
+    border:0;
+    padding:10px;
+    background:white;
+    line-height:50px;
+    font-size: 20px;
+    border-radius:0;
+    outline:0;
+    border-right:1px solid rgba(0,0,0,0.2);
+    -webkit-appearance: none;
+} */
+
+/* .flex-form > *:last-child {
+    border-right: 0;
+} */
+
+/*Flexbox Starts Here*/
+/* .cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+  
+/* .flex-form {
+    display: flex;
+    border: 20px solid rgba(0,0,0,0.3);
+    border-radius: 5px;
+} */
+
+/* input[type='search'] {
+    flex-basis: 500px;
+} */
+
+.cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
