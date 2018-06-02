@@ -30,6 +30,7 @@ export class Search extends Component {
           }
         })
           .then(res => {
+            console.log(res.data);
             //grabbing the city's coordinates to be used for google maps "center" required option
             let cityCoordinates = res.data.region.center;
             let data = res.data.businesses;

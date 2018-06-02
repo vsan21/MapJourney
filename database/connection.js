@@ -14,11 +14,6 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
   if(err) throw err;
   console.log('You are now connected to the database...');
-
-//   var person = {name: 'Larry', age: 41, email: 'larrybird@gmail.com'};
-//   connection.query('INSERT INTO people SET ?', person, (err, results, fields) => {
-//     if(err) throw err; 
-//   })
 })
 
 module.exports = connection;

@@ -25,7 +25,9 @@ mysql -D $database_name -e "CREATE TABLE maps (
     id INT PRIMARY KEY,
     title VARCHAR (355) NOT NULL,
     location VARCHAR (355) NOT NULL,
-    user_id INT 
+    user_id INT, 
+    latitude DECIMAL (65,20) NOT NULL,
+    longitude DECIMAL (65,20) NOT NULL
 );"
 
 mysql -D $database_name -e "CREATE TABLE pins (
@@ -33,7 +35,10 @@ mysql -D $database_name -e "CREATE TABLE pins (
     place_name VARCHAR (355) NOT NULL,
     address VARCHAR (355) NOT NULL,
     map_category VARCHAR (355) NOT NULL,
-    map_id INT 
+    map_id INT,
+    latitude DECIMAL (65,20) NOT NULL,
+    longitude DECIMAL (65,20) NOT NULL,
+    image VARCHAR (355) NOT NULL
 );"
 
 mysql -D $database_name -e "show tables;"

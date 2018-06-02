@@ -27,7 +27,8 @@ export class Results extends Component {
 				cityCoordinates: this.props.location.state.city,
 				place_name: mapInfo.name,
 				address: mapInfo.address,
-				placeCoordinates: mapInfo.coordinates
+				placeCoordinates: mapInfo.coordinates,
+				image: mapInfo.image
 			},
 			headers: {
 				'content-type': 'application/json'
