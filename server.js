@@ -7,6 +7,7 @@ require('dotenv').config();
 const { body,validationResult } = require('express-validator/check');
 //Body Parser: allow us to grab information from POST (extract JSON out of it)
 const bodyParser = require('body-parser');
+const connection = require('./database/connection.js');
 const app = express();
 
 //KEYS 
@@ -40,6 +41,26 @@ app.post('/results', (req, res) => {
     .catch((err) => {
       console.log(err);
     }) 
+})
+
+//recall: it's req.body and not req.data 
+app.post('/mapinfo', (req, res) => {
+  const cityCoordinates = req.body.cityCoordinates;
+  const place_name = req.body.place_name;
+  const address = req.body.address;
+  const placeCoordinates = req.body.placeCoordinates;
+
+  const mapCityCoordinates = {latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude};
+  connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
+    if (err) throw err;
+  })
+
+  const pinsInfo = {place_name: place_name, address: address, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude};
+  connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
+    if (err) throw err;
+  })
+
+  res.send('This was stored in the database and will pinned to the map!')
 })
 
 const port = process.env.PORT || 8000;

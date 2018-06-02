@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: `${MYSQL_KEY}`,
-  database: 'test'
+  database: 'mapjourneytest'
 })
 
 connection.connect((err) => {
@@ -20,3 +20,5 @@ connection.connect((err) => {
 //     if(err) throw err; 
 //   })
 })
+
+module.exports = connection;

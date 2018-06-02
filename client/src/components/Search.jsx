@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Search.css';
-import video from '../images/background-video.mp4';
+// import video from '../images/background-video.mp4';
 
 export class Search extends Component {
     state = {
-        city: [],
+        city: '',
         results: []
       };
     
@@ -43,7 +43,7 @@ export class Search extends Component {
                 reviewCount: item.review_count,
                 stars: item.rating,
                 coordinates: item.coordinates, 
-                address: item.location.display_address, 
+                address: item.location.display_address[0] + ', ' + item.location.display_address[1], 
                 image: item.image_url,
                 yelpLink: item.url
               });
@@ -65,13 +65,13 @@ export class Search extends Component {
 
               <button type='submit'>Search</button>
             </form>
-            <video class='drone shots' src="{video}" autoplay loop></video>
+            {/* <video class='drone shots' src="{video}" autoplay loop></video> */}
 
             {/* redirecting the results to a new page */}
             {this.state.results.length > 0 &&
               <Redirect to={{
                 pathname: '/results',
-                state: { results: this.state.results }
+                state: { city: this.state.city, results: this.state.results }
               }} />
             }
 
