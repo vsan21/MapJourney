@@ -43,14 +43,24 @@ app.post('/results', (req, res) => {
     }) 
 })
 
+//recall: it's req.body and not req.data 
 app.post('/mapinfo', (req, res) => {
-  const cityCoordinates = req.data.cityCoordinates;
-  const place_name = req.data.place_name;
-  const address = req.data.address;
-  const placeCoordinates = req.data.placeCoordinates;
+  const cityCoordinates = req.body.cityCoordinates;
+  const place_name = req.body.place_name;
+  const address = req.body.address;
+  const placeCoordinates = req.body.placeCoordinates;
 
+  const mapCityCoordinates = {latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude};
+  connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
+    if (err) throw err;
+  })
 
-  connection.query('INSERT INTO pins')
+  const pinsInfo = {place_name: place_name, address: address, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude};
+  connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
+    if (err) throw err;
+  })
+
+  res.send('This was stored in the database and will pinned to the map!')
 })
 
 const port = process.env.PORT || 8000;

@@ -6,7 +6,7 @@ import './Search.css';
 
 export class Search extends Component {
     state = {
-        city: [],
+        city: '',
         results: []
       };
     
@@ -71,7 +71,7 @@ export class Search extends Component {
             {this.state.results.length > 0 &&
               <Redirect to={{
                 pathname: '/results',
-                state: { city: this.state.cityCoordinates, results: this.state.results }
+                state: { city: this.state.city, results: this.state.results }
               }} />
             }
 
