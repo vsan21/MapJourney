@@ -17,10 +17,22 @@ const YELP_API_KEY = process.env.YELP_API_KEY;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// app.get('/yelp', (req, res) => {
-//   res.send({ express: 'Hello From Express' });
-// });
+//get map/pins information to create map/markers
+app.get('/mymaps', (req, res) => {
+  //to set the center of the map
+  connection.query('SELECT (latitude, longitude) FROM maps', (err, results) => {
+    if (err) throw err;
+  })
 
+  //to create markers/infowindow on map 
+  connection.query('SELECT (place_name, address, map_category, latitude, longitude, image) FROM pins', (err, results) => {
+    if (err) throw err;
+  })
+
+  res.send();
+});
+
+//ajax call to yelp api 
 app.post('/results', (req, res) => {
   // req.checkBody('location', 'Location is Required').notEmpty();
   
@@ -43,19 +55,21 @@ app.post('/results', (req, res) => {
     }) 
 })
 
-//recall: it's req.body and not req.data 
+//sending user's "add to map" pins to db
 app.post('/mapinfo', (req, res) => {
+  //recall: it's req.body and not req.data 
   const cityCoordinates = req.body.cityCoordinates;
   const place_name = req.body.place_name;
   const address = req.body.address;
   const placeCoordinates = req.body.placeCoordinates;
+  const image = req.body.image;
 
   const mapCityCoordinates = {latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude};
   connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
     if (err) throw err;
   })
 
-  const pinsInfo = {place_name: place_name, address: address, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude};
+  const pinsInfo = {place_name: place_name, address: address, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image};
   connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
     if (err) throw err;
   })
