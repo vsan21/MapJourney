@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import logo from '../images/yelp-logo2.png';
 import star0 from '../images/small_0@3x.png';
 import star1 from '../images/small_1@3x.png';
@@ -12,6 +13,18 @@ import star4_half from '../images/small_4_half@3x.png';
 import star5 from '../images/small_5@3x.png';
 
 export class ListPlaces extends Component {
+    state = {
+        show: false
+    }
+
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = () => {
+        this.setState({ show: true });
+    }
+
     render() {
         const reviewStyle = {
 			color: '#D3D3D3',
@@ -62,7 +75,35 @@ export class ListPlaces extends Component {
                     <p align='left' style={reviewStyle}>{place.reviewCount} Reviews</p>
                 </td>
                 <td width='10%' align='center'>
-                    <button id='button' data-id={index} onClick={() => { this.props.saveMapInfo(index) }}>Add to Map</button>
+                    <Button 
+                        bsStyle="primary" bsSize="large" 
+                        id='button' data-id={index} onClick={() => { 
+                            this.props.saveMapInfo(index);
+                            this.handleShow()                             
+                        }}
+                    >
+                        Add to Map
+                    </Button>
+                    <Modal show={this.state.show} onHide={this.handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Map Category</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <h4>Which category does this item belong to?</h4>
+                            <form>
+                                <input type='radio' /> Museum<br/>
+                                <input type='radio' /> Restaurant<br/>
+                                <input type='radio' /> Dessert<br/>
+                                <input type='radio' /> Bar<br/> 
+                                <input type='radio' /> Hike<br/>
+                                <input type='radio' /> Photo-op<br/>
+                                <input type='radio' /> Romantic<br/> 
+                            </form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button onClick={this.handleClose}>Save</Button>
+                        </Modal.Footer>
+                    </Modal>
                 </td>
             </tr>
         );
