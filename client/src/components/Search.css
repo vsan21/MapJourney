@@ -1,18 +1,3 @@
-/* makes working with the box model a lot easier and flexible (includes padding and border, before it was separate and that would make our box look bigger than it is) */
-/* universal box sizing with inheritance */
-html {
-    box-sizing: border-box;
-}
-
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-body {
-    font-family: sans-serif;
-    margin: 0;
-}
-
 /* need to set the height to 100vh so that we can move the form vertically */
 .cover  {
     height:100vh;

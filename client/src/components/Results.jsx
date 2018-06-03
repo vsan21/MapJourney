@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { Modal, Button } from 'react-materialize';
 import { ListPlaces } from './ListPlaces';
 
 export class Results extends Component {
-	
+
 	saveMapInfo = (id) => {
 		console.log(id);
 		const mapInfo = this.props.location.state.results[id];

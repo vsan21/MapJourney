@@ -19,6 +19,10 @@ export class ListPlaces extends Component {
 
     handleClose = () => {
         this.setState({ show: false });
+        let category = document.querySelector('input[name="category"]:checked').value;
+        console.log(category);
+        //grab what the user selected from the radio list
+            
     }
 
     handleShow = () => {
@@ -76,7 +80,7 @@ export class ListPlaces extends Component {
                 </td>
                 <td width='10%' align='center'>
                     <Button 
-                        bsStyle="primary" bsSize="large" 
+                        bsStyle="primary" bsSize="small" 
                         id='button' data-id={index} onClick={() => { 
                             this.props.saveMapInfo(index);
                             this.handleShow()                             
@@ -84,20 +88,20 @@ export class ListPlaces extends Component {
                     >
                         Add to Map
                     </Button>
-                    <Modal show={this.state.show} onHide={this.handleClose}>
-                        <Modal.Header closeButton>
+                    <Modal bsSize='small' show={this.state.show} onHide={this.handleClose}>
+                        <Modal.Header>
                             <Modal.Title>Map Category</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <h4>Which category does this item belong to?</h4>
                             <form>
-                                <input type='radio' /> Museum<br/>
-                                <input type='radio' /> Restaurant<br/>
-                                <input type='radio' /> Dessert<br/>
-                                <input type='radio' /> Bar<br/> 
-                                <input type='radio' /> Hike<br/>
-                                <input type='radio' /> Photo-op<br/>
-                                <input type='radio' /> Romantic<br/> 
+                                <input type='radio' name='category' value='museum'/> Museum<br/>
+                                <input type='radio' name='category' value='restaurant'/> Restaurant<br/>
+                                <input type='radio' name='category' value='dessert'/> Dessert<br/>
+                                <input type='radio' name='category' value='bar'/> Bar<br/> 
+                                <input type='radio' name='category' value='hike'/> Hike<br/>
+                                <input type='radio' name='category' value='photo-op'/> Photo-op<br/>
+                                <input type='radio' name='category' value='romantic'/> Romantic<br/> 
                             </form>
                         </Modal.Body>
                         <Modal.Footer>
