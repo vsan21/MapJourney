@@ -80,20 +80,3 @@ export class Search extends Component {
         );
     }
 }
-
-/*render (){
-import ListItem from ''...
-
-    const styleObj = {...}
-    return (
-        <table>
-            {list.map(item => {
-                <ListItem 
-                data={item}
-                key={item}
-                index={i}
-            })}
-        </table>
-    )
-
-}*/
