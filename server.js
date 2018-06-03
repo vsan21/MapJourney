@@ -7,6 +7,7 @@ require('dotenv').config();
 const { body,validationResult } = require('express-validator/check');
 //Body Parser: allow us to grab information from POST (extract JSON out of it)
 const bodyParser = require('body-parser');
+//make mysql connection available to query
 const connection = require('./database/connection.js');
 const app = express();
 
