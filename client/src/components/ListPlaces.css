@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+
+h4 {
+	text-align: center;
+}
+
+form {
+	margin-left: 6em;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+}
+
+input[type='radio'] {
+	margin-bottom: 1em;
+	margin-right: 0.7em;
+}
+
+#modal-header {
+	background-color: rgba(64, 224, 208, 0.651);
+}
+
+#modal-title {
+	text-align: center;
+	font-family: 'Satisfy', cursive;
+	font-size: 2.3em;
+	font-weight: bold;
+}
+
+#savebtn {
+	background:#FF5A5F;
+	border-top: 1px solid #FF5A5F;
+	border-bottom: 1px solid #FF5A5F;
+	color:white;
+}
+
+
