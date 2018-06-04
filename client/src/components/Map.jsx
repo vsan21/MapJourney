@@ -2,32 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export class Map extends Component {
-
-	//state holds the marker locations (array of individual objects)
-	state = {
-		places: [
-			{
-				coordinate: { lat:, lng },
-				iconImage: '',
-				category: '',
-				content: `
-					<img src=''>
-					<h1></h1>
-					<p>Address:</p>
-					<p></p>
-				`
-			},
-			{},
-			{}
-		]
-	}
-
-	//when component mounts, invoke loadMap function
+	// when component mounts, invoke loadMap function
 	componentDidMount() {
 		this.loadMap();
+		console.log('this is firing')
+		console.log(this.props.google);
 	}
 
-	loadMap() {
+	loadMap = () => {
 		//checking to see if props were passed down from parent {MapContainer}
 		//this.props = google object (contains the map object)
 		//this.props.google = maps object (contains all the map info)
@@ -43,10 +25,11 @@ export class Map extends Component {
 			//Finds that exact div in the React DOM
 			const node = ReactDOM.findDOMNode(mapRef);
 
-
+			const city = this.props.city[0].coordinates;
+			console.log(city);
 			//map options/configurations (zoom + center)
 			const mapConfig = Object.assign({}, {
-				center: { lat: 37.7749, lng: -122.4194 },
+				center: { lat: city.latitude, lng: city.longitude },
 				zoom: 11
 			})
 
@@ -55,38 +38,38 @@ export class Map extends Component {
 
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
-			this.state.places.forEach(place => {
+			this.props.places.forEach(place => {
 				const marker = new google.maps.Marker({
 					position: { lat: place.coordinate.lat, lng: place.coordinate.lng },
 					//this.map is referencing the map we created above 
 					map: this.map
 				})
+
+				//ADD CUSTOM ICON
+				//if iconImage is included in any of the objects
+				if (place.iconImage) {
+					marker.setIcon(place.iconImage);
+				}
+
+				//checking category, to get the right icon
+				if (place.category === '') {
+					place.iconImage = '';
+					marker.setIcon(place.iconImage);
+				}
+
+				//ADD INFOWINDOW
+				if (place.content) {
+					const infoWindow = new google.maps.InfoWindow({
+						content: place.content
+					})
+
+					//when user clicks on any of the markers, open infowindow
+					//2 parameters: the map where it will open, and the marker
+					marker.addListener('click', () => {
+						infoWindow.open(this.map, marker);
+					})
+				}
 			})
-
-			//ADD CUSTOM ICON
-			//if iconImage is included in any of the objects
-			if (place.iconImage) {
-				marker.setIcon(place.iconImage);
-			}
-
-			//checking category, to get the right icon
-			if (place.category === '') {
-				place.iconImage = '';
-				marker.setIcon(place.iconImage);
-			}
-
-			//ADD INFOWINDOW
-			if (place.content) {
-				const infoWindow = new google.maps.InfoWindow({
-					content: place.content
-				})
-
-				//when user clicks on any of the markers, open infowindow
-				//2 parameters: the map where it will open, and the marker
-				marker.addListener('click', () => {
-					infoWindow.open(this.map, marker);
-				})
-			}
 		}
 	}
 
@@ -94,10 +77,10 @@ export class Map extends Component {
 	render() {
 		//NEEDED in order for map to display 
 		const style = {
-			width: '90vw',
-			height: '75vh'
+			width: '100vw',
+			height: '100vh'
 		}
-		return (
+		return (	
 			<div ref='map' style={style}>
 				loading map...
 			</div>

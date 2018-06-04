@@ -18,19 +18,24 @@ const YELP_API_KEY = process.env.YELP_API_KEY;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//get map/pins information to create map/markers
-app.get('/mymaps', (req, res) => {
+//get city coordinates to create map
+app.get('/citycoords', (req, res) => {
 	//to set the center of the map
-	connection.query('SELECT (latitude, longitude) FROM maps', (err, results) => {
+	connection.query('SELECT latitude, longitude FROM maps LIMIT 1', (err, results) => {
 		if (err) throw err;
+		// console.log(JSON.parse(JSON.stringify(results)))
+		res.json(results);
 	})
+});
 
+//get pins information to create markers
+app.get('/pins', (req, res) => {
 	//to create markers/infowindow on map 
-	connection.query('SELECT (place_name, address, map_category, latitude, longitude, image) FROM pins', (err, results) => {
+	connection.query('SELECT place_name, address, map_category, latitude, longitude, image FROM pins', (err, results) => {
 		if (err) throw err;
+		// console.log(JSON.parse(JSON.stringify(results)));
+		res.json(results);
 	})
-
-	res.send();
 });
 
 //ajax call to yelp api 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Search.css';
+// import { NavBar } from './NavBar';
 // import video from '../images/background-video.mp4';
 
 export class Search extends Component {
@@ -60,6 +61,7 @@ export class Search extends Component {
 	render() {
 		return (
 			<div className='cover'>
+				{/* <NavBar /> */}
 				<form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
 					<input type='text' name='term' placeholder='Ex. Hikes, Museums...' />
 					<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
@@ -70,10 +72,15 @@ export class Search extends Component {
 
 				{/* redirecting the results to a new page */}
 				{this.state.results.length > 0 &&
+					// <Results city={this.state.city} results={this.state.results}/> 
 					<Redirect to={{
 						pathname: '/results',
 						state: { city: this.state.city, results: this.state.results }
 					}} />
+					// <Link to={{
+					// 	pathname: '/results',
+					// 	state: { city: this.state.city, results: this.state.results }
+					//   }}/>
 				}
 
 			</div>
