@@ -5,18 +5,19 @@
   "author": "Vivian San",
   "license": "MIT",
   "scripts": {
+    "start": "concurrently \"yarn server\" \"yarn client\"",
     "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
+    "express-validator": "^5.2.0",
     "mysql": "^2.15.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
   }
 }
-

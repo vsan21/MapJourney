@@ -1,3 +1,13 @@
+/* makes working with the box model a lot easier and flexible (includes padding and border, before it was separate and that would make our box look bigger than it is) */
+/* universal box sizing with inheritance */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   padding: 0;

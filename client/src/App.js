@@ -1,45 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Search } from './components/Search';
+import { Results } from './components/Results';
+// import { NavBar } from './components/NavBar';
+import  MapContainer  from './components/MapContainer';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+
 
 class App extends Component {
-  state = {
-    response: ''
-  };
-  
-  componentDidMount() {
-    fetch('/yelp')
-      .then(res => {
-        return res.json()
-      })
-      .then(res => {
-        console.log(res);
-
-        let resultOutput = "<ul class='list-group'>";
-        for(let business of res){
-          resultOutput += `<li class='list-group-item'>${business.name}</li>`;
-        }
-        resultOutput += "</ul>";
-
-        document.getElementById('result-output').innerHTML = resultOutput;
-      })
-      .catch(error => {
-        console.log(error)
-      });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.response}</p>
-        <div id='result-output'></div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<Switch>
+					<Route exact path='/' component={Search} />
+					<Route exact path='/results' component={Results} />
+					<Route exact path='/mymaps' component={MapContainer} />
+				</Switch>
+			</Router>
+		);
+	}
 }
 
 export default App;
+
