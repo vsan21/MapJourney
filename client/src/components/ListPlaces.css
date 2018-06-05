@@ -1,5 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
+/* Results page styling */
+td {
+	padding-top: 2em;
+	padding-bottom: 1em;
+}
+
+.description > p:first-child {
+	font-size: 2.2em;
+}
+
+.description > p:nth-child(2) {
+	font-size: 1.2em;
+}
+
+#addbtn {
+	margin-right: 2em;
+}
+
+.image {
+	margin-left: 3em;
+}
+
+.description {
+	margin-left: 5em;
+	margin-right: 8em;
+}
+
+
+/* review number style */
+.description > p:last-child {
+	color: gray;
+	margin-bottom: 2%;
+}
+
+
+/* Modal styling */
 h4 {
 	text-align: center;
 }

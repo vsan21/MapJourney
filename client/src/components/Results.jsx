@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { ListPlaces } from './ListPlaces';
+import './Results.css';
+import { NavBar } from './NavBar';
 
 export class Results extends Component {
 
@@ -34,8 +36,9 @@ export class Results extends Component {
 
 	render() {
 		return (
-			<div>
-				<table width='75%' align='center'>
+			<div className='wrapper'>
+				<NavBar />
+				<table>
 					<thead>
 						<tr>
 							<th></th>

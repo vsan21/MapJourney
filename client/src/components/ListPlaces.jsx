@@ -39,14 +39,6 @@ export class ListPlaces extends Component {
 	}
 
 	render() {
-		const reviewStyle = {
-			color: '#D3D3D3',
-			marginBottom: '2%'
-		}
-		const logoStyle = {
-			marginTop: '2px'
-		}
-
 		const place = this.props.place;
 		const index = this.props.index;
 
@@ -75,21 +67,25 @@ export class ListPlaces extends Component {
 
 		return (
 			<tr>
-				<td width='10%' align='center'>
-					<img src={place.image} alt={place.name} width='230px' height='170px' />
+				<td>			
+					<div className="image">
+						<img src={place.image} alt={place.name} width='200px' height='200px' />
+					</div>							
 				</td>
-				<td width='60%' align='center'>
-					<h3 align='left'>{place.name}</h3>
-					<p align='left'>{place.address}</p>
-					<p align='left'>
-						{stars}
-						<a href={place.yelpLink}><img src={logo} alt={logo} style={logoStyle} /></a>
-					</p>
-					<p align='left' style={reviewStyle}>{place.reviewCount} Reviews</p>
+				<td>
+					<div className="description">
+						<p>{place.name}</p>
+						<p>{place.address}</p>
+						<p>
+							{stars}
+							<a href={place.yelpLink}><img src={logo} alt={logo} /></a>
+						</p>
+						<p><i>{place.reviewCount} Reviews</i></p>
+					</div>
 				</td>
-				<td width='10%' align='center'>
+				<td>
 					<Button
-						bsStyle="primary" bsSize="small"
+						bsStyle="primary" bsSize="large"
 						id='addbtn' data-id={index} onClick={() => {
 							this.props.saveMapInfo(index);
 							this.handleShow()
