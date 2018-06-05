@@ -5,8 +5,6 @@ export class Map extends Component {
 	// when component mounts, invoke loadMap function
 	componentDidMount() {
 		this.loadMap();
-		console.log('this is firing')
-		console.log(this.props.google);
 	}
 
 	loadMap = () => {
