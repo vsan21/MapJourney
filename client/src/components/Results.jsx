@@ -37,7 +37,7 @@ export class Results extends Component {
 	render() {
 		return (
 			<div className='wrapper'>
-				<NavBar />
+				<NavBar auth={this.props.auth} history={this.props.history}/>
 				<table>
 					<thead>
 						<tr>
