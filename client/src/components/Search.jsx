@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Search.css';
-// import { NavBar } from './NavBar';
+import { NavBar } from './NavBar';
 // import video from '../images/background-video.mp4';
 
 export class Search extends Component {
@@ -59,30 +59,43 @@ export class Search extends Component {
 	}
 
 	render() {
+		const { isAuthenticated } = this.props.auth;
 		return (
-			<div className='cover'>
-				{/* <NavBar /> */}
-				<form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
-					<input type='text' name='term' placeholder='Ex. Hikes, Museums...' />
-					<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
+			<div>
+				<NavBar />
+				<div className='cover'>
+					<div className='welcome'>
+						{/* <NavBar /> */}
+						{
+							isAuthenticated() && (
+								<h4>
+									Welcome! Where is your next adventure?
+							</h4>
+							)
+						}
+					</div>
+					<form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
+						<input type='text' name='term' placeholder='Ex. Hikes, Museums...' />
+						<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
 
-					<button type='submit'>Search</button>
-				</form>
-				{/* <video class='drone shots' src="{video}" autoplay loop></video> */}
+						<button type='submit'>Search</button>
+					</form>
+					{/* <video class='drone shots' src="{video}" autoplay loop></video> */}
 
-				{/* redirecting the results to a new page */}
-				{this.state.results.length > 0 &&
-					// <Results city={this.state.city} results={this.state.results}/> 
-					<Redirect to={{
-						pathname: '/results',
-						state: { city: this.state.city, results: this.state.results }
-					}} />
-					// <Link to={{
-					// 	pathname: '/results',
-					// 	state: { city: this.state.city, results: this.state.results }
-					//   }}/>
-				}
+					{/* redirecting the results to a new page */}
+					{this.state.results.length > 0 &&
+						// <Results city={this.state.city} results={this.state.results}/> 
+						<Redirect to={{
+							pathname: '/results',
+							state: { city: this.state.city, results: this.state.results }
+						}} />
+						// <Link to={{
+						// 	pathname: '/results',
+						// 	state: { city: this.state.city, results: this.state.results }
+						//   }}/>
+					}
 
+				</div>
 			</div>
 		);
 	}
