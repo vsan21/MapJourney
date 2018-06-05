@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Navbar, NavItem, Nav } from 'react-bootstrap';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 
@@ -65,10 +64,20 @@ export class NavBar extends Component {
 	        })
 	}
 
+	goTo = (route) => {
+		this.props.history.replace(`/${route}`)
+	}
+
+	logout = () => {
+		this.props.auth.logout();
+	}
+
 	render () {
+		// const { isAuthenticated } = this.props.auth;
+		console.log(this.props.auth, this.props.history);		
 		return (
 			<div>
-				<Navbar default collapseOnSelect>
+				<Navbar fluid collapseOnSelect>
 					<Navbar.Header>
 						<Navbar.Brand>
 							<a href="/search">MapJourney</a>
@@ -76,6 +85,8 @@ export class NavBar extends Component {
 						<Navbar.Toggle />
 					</Navbar.Header>
 					<Navbar.Collapse>
+
+
 						<Nav pullRight>
 							<NavItem eventKey={1} onClick={() => {
 								this.getCityCoords(); 
@@ -83,22 +94,41 @@ export class NavBar extends Component {
 							}}>
 								My Maps
       						</NavItem>
-							<NavItem eventKey={2}>
+							{/* <Button
+								bsStyle="primary"
+								className="btn-margin"
+								onClick={this.goTo('profile')}
+							>
+								Your Profile
+                  			</Button> */}
+							<NavDropdown eventKey={2} title="Account" id="basic-nav-dropdown">
+								<MenuItem 
+									eventKey={2.1}
+									// onSelect={this.goTo('profile')}
+								>
+									Your Profile
+								</MenuItem>
+								<MenuItem divider />
+								<MenuItem 
+									eventKey={2.2} 
+									onSelect={this.logout}
+								>
+									Sign out
+								</MenuItem>
+							</NavDropdown>
+							{/* <NavItem eventKey={2}>
 								Account
-      						</NavItem>
+      						</NavItem> */}
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
 
 				{this.state.places.length > 0 &&
-					// <MapContainer city={this.state.city} places={this.state.places} />
-
 					<Redirect to={{
 						pathname: '/mymaps',
 						state: { city: this.state.city, places: this.state.places }
 					}} />
 				}
-
 			</div>
 		);
 	}

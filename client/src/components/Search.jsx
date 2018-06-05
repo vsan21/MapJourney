@@ -12,7 +12,7 @@ export class Search extends Component {
 	};
 
 	handleSubmit = (e) => {
-		//prevent form from refreshing and redirecting to '/yelp/results'
+		//prevent form from refreshing and redirecting to '/results'
 		e.preventDefault();
 
 		//grabbing the users's input 
@@ -60,16 +60,17 @@ export class Search extends Component {
 
 	render() {
 		const { isAuthenticated } = this.props.auth;
+		console.log(this.props.auth, this.props.history);
+		
 		return (
 			<div>
-				<NavBar />
+				<NavBar auth={this.props.auth} history={this.props.history}/>
 				<div className='cover'>
 					<div className='welcome'>
-						{/* <NavBar /> */}
 						{
 							isAuthenticated() && (
-								<h4>
-									Welcome! Where is your next adventure?
+							<h4>
+								Welcome! Where is your next adventure?
 							</h4>
 							)
 						}
@@ -84,15 +85,10 @@ export class Search extends Component {
 
 					{/* redirecting the results to a new page */}
 					{this.state.results.length > 0 &&
-						// <Results city={this.state.city} results={this.state.results}/> 
 						<Redirect to={{
 							pathname: '/results',
 							state: { city: this.state.city, results: this.state.results }
 						}} />
-						// <Link to={{
-						// 	pathname: '/results',
-						// 	state: { city: this.state.city, results: this.state.results }
-						//   }}/>
 					}
 
 				</div>
