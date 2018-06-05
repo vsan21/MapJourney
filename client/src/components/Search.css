@@ -1,7 +1,7 @@
 /* need to set the height to 100vh so that we can move the form vertically */
 .cover  {
-    height:100vh;
-    width:100%;
+    height: 100vh;
+    width: 100%;
 }
 
 /*Video*/
@@ -51,8 +51,10 @@
 /* to center the form in the middle */
 .cover {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 2px solid green;
 }
   
 /* forms a gray border around the form */
@@ -60,4 +62,9 @@
     display: flex;
     border: 20px solid rgba(0,0,0,0.3);
     border-radius: 5px;
+}
+
+.welcome {
+    margin-left: 6%;
+    z-index: 10;
 }

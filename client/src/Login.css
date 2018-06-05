@@ -1,0 +1,23 @@
+.login-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-intro {
+    border: 2px solid green;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgba(245, 245, 245, 0.808);
+    opacity:0.96;
+}
+
+.login-buttons {
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+}

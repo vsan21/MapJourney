@@ -24,7 +24,6 @@ export class Map extends Component {
 			const node = ReactDOM.findDOMNode(mapRef);
 
 			const city = this.props.city[0].coordinates;
-			console.log(city);
 			//map options/configurations (zoom + center)
 			const mapConfig = Object.assign({}, {
 				center: { lat: city.latitude, lng: city.longitude },

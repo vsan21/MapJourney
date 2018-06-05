@@ -7,7 +7,6 @@ import { Switch, Route, Router } from 'react-router-dom';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import Login from './Login';
-import Home from './Home/Home';
 import history from './history';
 
 const auth = new Auth();
@@ -23,9 +22,8 @@ class App extends Component {
 		return (
 			<Router history={history}>
 				<Switch>
-          <Route path="/" render={(props) => <Login auth={auth} {...props} />} />
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
-					<Route exact path='/search' component={Search} />
+          <Route exact path="/" render={(props) => <Login auth={auth} {...props} />} />
+          <Route exact path="/search" render={(props) => <Search auth={auth} {...props} />} />
 					<Route exact path='/results' component={Results} />
 					<Route exact path='/mymaps' component={MapContainer} />
           <Route path="/callback" render={(props) => {

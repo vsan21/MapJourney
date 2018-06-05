@@ -71,7 +71,7 @@ export class NavBar extends Component {
 				<Navbar default collapseOnSelect>
 					<Navbar.Header>
 						<Navbar.Brand>
-							<a href="/">MapJourney</a>
+							<a href="/search">MapJourney</a>
 						</Navbar.Brand>
 						<Navbar.Toggle />
 					</Navbar.Header>
