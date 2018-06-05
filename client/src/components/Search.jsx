@@ -60,8 +60,6 @@ export class Search extends Component {
 
 	render() {
 		const { isAuthenticated } = this.props.auth;
-		console.log(this.props.auth, this.props.history);
-		
 		return (
 			<div>
 				<NavBar auth={this.props.auth} history={this.props.history}/>

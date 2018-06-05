@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavBar } from '../components/NavBar';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 
@@ -18,6 +19,8 @@ class Profile extends Component {
         const { profile } = this.state;
         return (
             <div className="container">
+                <NavBar auth={this.props.auth} history={this.props.history} />
+
                 <div className="profile-area">
                     <h1>{profile.name}</h1>
                     <Panel header="Profile">
