@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
+import { Redirect } from 'react-router';
+
 import './App.css';
 import { Search } from './components/Search';
 import { Results } from './components/Results';
@@ -25,7 +27,13 @@ class App extends Component {
 				<Switch>
 					<Route exact path="/" render={(props) => <Login auth={auth} {...props} />} />
 					<Route exact path="/search" render={(props) => <Search auth={auth} {...props} />} />
-					<Route exact path="/profile" render={(props) => <Profile auth={auth} {...props} />} />
+					<Route path="/profile" render={(props) => (
+						!auth.isAuthenticated() ? (
+							<Redirect to="/search" />
+						) : (
+							<Profile auth={auth} {...props} />
+							)
+					)} />
 					<Route exact path='/results' render={(props) => <Results auth={auth} {...props} />} />
 					<Route exact path='/mymaps' render={(props) => <MapContainer auth={auth} {...props} />} />
 					<Route path="/callback" render={(props) => {

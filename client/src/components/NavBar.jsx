@@ -64,7 +64,7 @@ export class NavBar extends Component {
 	        })
 	}
 
-	goTo = (route) => {
+	goTo(route) {
 		this.props.history.replace(`/${route}`)
 	}
 
@@ -73,7 +73,7 @@ export class NavBar extends Component {
 	}
 
 	render () {
-		// const { isAuthenticated } = this.props.auth;
+		const { isAuthenticated } = this.props.auth;
 		console.log(this.props.auth, this.props.history);		
 		return (
 			<div>
@@ -102,12 +102,22 @@ export class NavBar extends Component {
 								Your Profile
                   			</Button> */}
 							<NavDropdown eventKey={2} title="Account" id="basic-nav-dropdown">
-								<MenuItem 
+								{
+									isAuthenticated() && (
+										<MenuItem
+											eventKey={2.1}
+											onSelect={this.goTo.bind(this, 'profile')}
+										>
+											Your Profile
+										</MenuItem>
+									)
+								}
+								{/* <MenuItem 
 									eventKey={2.1}
-									// onSelect={this.goTo('profile')}
+									onSelect={this.goTo.bind(this, 'profile')}
 								>
 									Your Profile
-								</MenuItem>
+								</MenuItem> */}
 								<MenuItem divider />
 								<MenuItem 
 									eventKey={2.2} 
