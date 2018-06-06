@@ -68,7 +68,11 @@ export class NavBar extends Component {
 		this.props.history.replace(`/${route}`)
 	}
 
-	logout = () => {
+	login() {
+		this.props.auth.login();
+	}
+
+	logout() {
 		this.props.auth.logout();
 	}
 
@@ -94,13 +98,6 @@ export class NavBar extends Component {
 							}}>
 								My Maps
       						</NavItem>
-							{/* <Button
-								bsStyle="primary"
-								className="btn-margin"
-								onClick={this.goTo('profile')}
-							>
-								Your Profile
-                  			</Button> */}
 							<NavDropdown eventKey={2} title="Account" id="basic-nav-dropdown">
 								{
 									isAuthenticated() && (
@@ -112,23 +109,34 @@ export class NavBar extends Component {
 										</MenuItem>
 									)
 								}
-								{/* <MenuItem 
-									eventKey={2.1}
-									onSelect={this.goTo.bind(this, 'profile')}
-								>
-									Your Profile
-								</MenuItem> */}
+								{
+									!isAuthenticated() && (
+										<MenuItem
+											eventKey={2.2}
+											onSelect={this.login.bind(this)}
+										>
+											Log In
+										</MenuItem>
+									)
+								}
 								<MenuItem divider />
-								<MenuItem 
+								{
+									isAuthenticated() && (
+										<MenuItem
+											eventKey={2.3}
+											onSelect={this.logout.bind(this)}
+										>
+											Sign out
+										</MenuItem>
+									)
+								}
+								{/* <MenuItem 
 									eventKey={2.2} 
-									onSelect={this.logout}
+									onSelect={this.logout.bind(this)}
 								>
 									Sign out
-								</MenuItem>
+								</MenuItem> */}
 							</NavDropdown>
-							{/* <NavItem eventKey={2}>
-								Account
-      						</NavItem> */}
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
