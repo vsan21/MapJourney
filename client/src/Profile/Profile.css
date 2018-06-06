@@ -1,8 +1,28 @@
 .profile-area img {
-    max-width: 150px;
+    max-width: 250px;
     margin-bottom: 20px;
+    border-radius: 50%;
 }
-  
-.panel-body h3 {
-  margin-top: 0;
+
+.info-container {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  border: 2px solid yellow;
+}
+
+.user-info > h4:nth-child(2) {
+  text-align: left;
+}
+
+.user-pic {
+  border: 2px solid green;
+}
+
+#user {
+  font-size: 0.8em;
 }
