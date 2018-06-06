@@ -84,5 +84,39 @@ app.post('/mapinfo', (req, res) => {
 	res.send('This was stored in the database and will pinned to the map!')
 })
 
+app.post('/userData', (req, res) => {
+	const first_name = req.body.first_name; 
+	const last_name = req.body.last_name;
+	const email = req.body.email;
+	const date = req.body.date;
+
+	connection.query('SELECT id, email FROM users WHERE email=?', email, (err, results) => {
+		if(err) throw err;
+
+		// if user isn't in database -> new user -> store their information
+		if(results.length === 0) {
+			const userData = { first_name: first_name, last_name: last_name, email: email, date: date }
+			connection.query('INSERT INTO users SET ?', userData, (err, results, fields) => {
+				if (err) throw err;
+				connection.query('SELECT id, email FROM users WHERE email=?', email, (err, results) => {
+					res.json(results[0].id)	
+				})
+			})
+		//otherwise don't save their information
+		} else {
+			// send user's id to frontend
+			res.json(results[0].id)
+		}
+	})
+
+	// const userData = {first_name: first_name, last_name: last_name, email: email}
+	// connection.query('INSERT INTO users SET ?', userData, (err, results, fields) => {
+	// 	if(err) throw err;
+	// 	console.log(results);
+	// })
+	// res.send('User stored into database.')
+
+})
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
