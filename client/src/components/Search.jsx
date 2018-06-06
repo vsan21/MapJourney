@@ -8,8 +8,23 @@ import { NavBar } from './NavBar';
 export class Search extends Component {
 	state = {
 		city: '',
-		results: []
+		results: [],
+		profile: {}
 	};
+
+	componentWillMount() {
+        const { userProfile, getProfile } = this.props.auth;
+        //if there is already not a userProfile, then getProfile
+            //pass that profile info to saveUserData so it can send it to the backend
+        if (!userProfile) {
+            getProfile((err, profile) => {
+                this.setState({ profile });
+                // this.saveUserData(profile);            
+            });
+        } else {
+            this.setState({ profile: userProfile });
+        }
+    }
 
 	handleSubmit = (e) => {
 		//prevent form from refreshing and redirecting to '/results'
@@ -59,6 +74,7 @@ export class Search extends Component {
 	}
 
 	render() {
+		console.log(this.state.profile);
 		const { isAuthenticated } = this.props.auth;
 		return (
 			<div>
@@ -85,7 +101,7 @@ export class Search extends Component {
 					{this.state.results.length > 0 &&
 						<Redirect to={{
 							pathname: '/results',
-							state: { city: this.state.city, results: this.state.results }
+							state: { city: this.state.city, results: this.state.results, profile: this.state.profile }
 						}} />
 					}
 

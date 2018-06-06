@@ -36,9 +36,6 @@ export class NavBar extends Component {
 		axios({
 	        method: 'get',
 	        url: '/pins',
-	        data: {
-
-	        },
 	        headers: {
 	            'content-type': 'application/json'
 	        }
@@ -129,12 +126,6 @@ export class NavBar extends Component {
 										</MenuItem>
 									)
 								}
-								{/* <MenuItem 
-									eventKey={2.2} 
-									onSelect={this.logout.bind(this)}
-								>
-									Sign out
-								</MenuItem> */}
 							</NavDropdown>
 						</Nav>
 					</Navbar.Collapse>
