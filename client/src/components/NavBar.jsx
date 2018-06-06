@@ -77,8 +77,7 @@ export class NavBar extends Component {
 	}
 
 	render () {
-		const { isAuthenticated } = this.props.auth;
-		console.log(this.props.auth, this.props.history);		
+		const { isAuthenticated } = this.props.auth;	
 		return (
 			<div>
 				<Navbar fluid collapseOnSelect>

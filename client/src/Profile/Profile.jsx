@@ -3,9 +3,9 @@ import { NavBar } from '../components/NavBar';
 import './Profile.css';
 
 class Profile extends Component {
-
-
-
+    state = {
+        first_name: ''
+    }
 
     componentWillMount() {
         this.setState({ profile: {} });
@@ -17,6 +17,10 @@ class Profile extends Component {
         } else {
             this.setState({ profile: userProfile });
         }
+    }
+
+    changeName = (e) => {
+        this.setState({first_name: e.target.first_name.value})
     }
 
     render() {
@@ -32,9 +36,15 @@ class Profile extends Component {
                             <img src={profile.picture} alt="profile" />
                         </div>
                         <div className='user-info'>
-                            <h4><strong>First Name</strong>: <span id='user'>{profile.given_name}</span></h4>
-                            <h4><strong>Last Name</strong>: <span id='user'>{profile.family_name}</span></h4>
-                            <h4><strong>Email</strong>: <span id='user'>{profile.nickname}</span></h4>
+                            <h5><strong>First Name</strong>:</h5>
+                            <p>{profile.given_name}</p>
+                            <hr />
+                             {/* <span id='user'>{profile.given_name}</span></h5> */}
+                            <h5><strong>Last Name</strong>:</h5>
+                            <p>{profile.family_name}</p>
+                            <hr />
+                            <h5><strong>Email</strong>:</h5>
+                            <p>{profile.email}</p>
                         </div>
                     </div>
                 </div>

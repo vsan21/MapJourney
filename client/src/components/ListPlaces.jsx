@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import axios from 'axios';
 import logo from '../images/yelp-logo2.png';
 import star0 from '../images/small_0@3x.png';
 import star1 from '../images/small_1@3x.png';
@@ -18,24 +19,50 @@ export class ListPlaces extends Component {
 		show: false
 	}
 
-	handleClose = () => {
-		//closes the modal window
-		this.setState({ show: false });
-
-		let category = document.querySelector('input[name="category"]:checked');
-		//checking to see if user selected any category or not
-		if (category === null) {
-			return;
-		} else {
-			//grabs the category the user selected
-			console.log(category.value);
-		}
-
-
-	}
-
 	handleShow = () => {
 		this.setState({ show: true });
+	}
+
+	handleClose = () => {
+		this.setState({ show: false });
+	}
+
+	saveMapInfo = (id) => {
+		//grabbing the specific data associated with each button
+		const mapInfo = this.props.results[id];
+		console.log(mapInfo);
+
+		let map_category;
+		let checkCategory = document.querySelector('input[name="category"]:checked');
+		//checking to see if user selected any category or not
+		if (checkCategory === null) {
+			return;
+		} else {
+			map_category = checkCategory.value;
+		}
+
+		axios({
+			method: 'post',
+			url: '/mapinfo',
+			data: {
+				cityCoordinates: this.props.city,
+				place_name: mapInfo.name,
+				address: mapInfo.address,
+				placeCoordinates: mapInfo.coordinates,
+				image: mapInfo.image,
+				category: map_category
+			},
+			headers: {
+				'content-type': 'application/json'
+			}
+		})
+			.then(res => {
+				console.log(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
 	}
 
 	render() {
@@ -86,14 +113,11 @@ export class ListPlaces extends Component {
 				<td>
 					<Button
 						bsStyle="primary" bsSize="large"
-						id='addbtn' data-id={index} onClick={() => {
-							this.props.saveMapInfo(index);
-							this.handleShow()
-						}}
+						id='addbtn' data-id={index} onClick={this.handleShow}
 					>
 						Add to Map
 					</Button>
-					<Modal bsSize='small' backdrop='static' keyboard={false} show={this.state.show} onHide={this.handleClose}>
+					<Modal bsSize='small' backdrop='static' keyboard={false} show={this.state.show} >
 						<Modal.Header id='modal-header'>
 							<Modal.Title id='modal-title'>Map Category</Modal.Title>
 						</Modal.Header>
@@ -110,7 +134,14 @@ export class ListPlaces extends Component {
 							</form>
 						</Modal.Body>
 						<Modal.Footer>
-							<Button id='savebtn' onClick={this.handleClose}>Save</Button>
+							<Button id='savebtn' onClick={() => {
+								this.handleClose();
+								//saving the index for each place until you click on it
+								this.saveMapInfo(index);
+								}}
+							>
+								Save
+							</Button>
 						</Modal.Footer>
 					</Modal>
 				</td>
