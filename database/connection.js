@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+require('dotenv').config();
 
 //KEYS
 const MYSQL_KEY = process.env.MYSQL_KEY;

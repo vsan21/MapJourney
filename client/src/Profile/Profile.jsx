@@ -1,26 +1,47 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { NavBar } from '../components/NavBar';
 import './Profile.css';
 
 class Profile extends Component {
     state = {
-        first_name: ''
+        profile: {}
     }
 
     componentWillMount() {
-        this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
+        //if there is already not a userProfile, then getProfile
+            //pass that profile info to saveUserData so it can send it to the backend
         if (!userProfile) {
             getProfile((err, profile) => {
                 this.setState({ profile });
+                this.saveUserData(profile);            
             });
         } else {
             this.setState({ profile: userProfile });
         }
     }
 
-    changeName = (e) => {
-        this.setState({first_name: e.target.first_name.value})
+    saveUserData = (profile) => {
+        console.log(profile);
+
+        axios({
+            method: 'post',
+            url: '/userData',
+            data: {
+                first_name: profile.given_name,
+                last_name: profile.family_name,
+                email: profile.email,
+                date: profile.updated_at
+            },
+            headers: {
+                'content-type': 'application/json'
+            },
+        }).then(res => {
+            console.log(res.data)
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
     render() {
@@ -39,12 +60,12 @@ class Profile extends Component {
                             <h5><strong>First Name</strong>:</h5>
                             <p>{profile.given_name}</p>
                             <hr />
-                             {/* <span id='user'>{profile.given_name}</span></h5> */}
                             <h5><strong>Last Name</strong>:</h5>
                             <p>{profile.family_name}</p>
                             <hr />
                             <h5><strong>Email</strong>:</h5>
                             <p>{profile.email}</p>
+                            {/* <pre>{JSON.stringify(profile, null, 2)}</pre> */}
                         </div>
                     </div>
                 </div>
