@@ -64,6 +64,7 @@ app.post('/results', (req, res) => {
 //sending user's "add to map" pins to db
 app.post('/mapinfo', (req, res) => {
 	//recall: it's req.body and not req.data 
+	const user_id = req.body.user_id;
 	const cityCoordinates = req.body.cityCoordinates;
 	const place_name = req.body.place_name;
 	const address = req.body.address;
@@ -76,7 +77,7 @@ app.post('/mapinfo', (req, res) => {
 		if (err) throw err;
 	})
 
-	const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image };
+	const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image, user_id: user_id };
 	connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
 		if (err) throw err;
 	})
@@ -99,13 +100,15 @@ app.post('/userData', (req, res) => {
 			connection.query('INSERT INTO users SET ?', userData, (err, results, fields) => {
 				if (err) throw err;
 				connection.query('SELECT id, email FROM users WHERE email=?', email, (err, results) => {
-					res.json(results[0].id)	
+					res.json(results[0].id);
+					console.log('New user created.')	
 				})
 			})
 		//otherwise don't save their information
 		} else {
 			// send user's id to frontend
 			res.json(results[0].id)
+			console.log('User already exists.')
 		}
 	})
 

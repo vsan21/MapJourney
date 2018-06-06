@@ -16,7 +16,7 @@ import './ListPlaces.css';
 
 export class ListPlaces extends Component {
 	state = {
-		show: false
+		show: false,
 	}
 
 	handleShow = () => {
@@ -45,6 +45,7 @@ export class ListPlaces extends Component {
 			method: 'post',
 			url: '/mapinfo',
 			data: {
+				user_id: this.props.id,
 				cityCoordinates: this.props.city,
 				place_name: mapInfo.name,
 				address: mapInfo.address,

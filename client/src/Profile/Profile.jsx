@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { NavBar } from '../components/NavBar';
 import './Profile.css';
 
@@ -15,34 +15,35 @@ class Profile extends Component {
         if (!userProfile) {
             getProfile((err, profile) => {
                 this.setState({ profile });
-                this.saveUserData(profile);            
+                // this.saveUserData(profile);            
             });
         } else {
             this.setState({ profile: userProfile });
         }
     }
 
-    saveUserData = (profile) => {
-        console.log(profile);
+    // saveUserData = (profile) => {
+    //     console.log(profile);
 
-        axios({
-            method: 'post',
-            url: '/userData',
-            data: {
-                first_name: profile.given_name,
-                last_name: profile.family_name,
-                email: profile.email,
-                date: profile.updated_at
-            },
-            headers: {
-                'content-type': 'application/json'
-            },
-        }).then(res => {
-            console.log(res.data)
-        }).catch(err => {
-            console.log(err);
-        })
-    }
+    //     axios({
+    //         method: 'post',
+    //         url: '/userData',
+    //         data: {
+    //             first_name: profile.given_name,
+    //             last_name: profile.family_name,
+    //             email: profile.email,
+    //             date: profile.updated_at
+    //         },
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //     }).then(res => {
+    //         console.log(res.data)
+    //         this.setState({id: res.data})
+    //     }).catch(err => {
+    //         console.log(err);
+    //     })
+    // }
 
     render() {
         const { profile } = this.state;
