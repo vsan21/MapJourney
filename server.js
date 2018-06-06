@@ -69,13 +69,14 @@ app.post('/mapinfo', (req, res) => {
 	const address = req.body.address;
 	const placeCoordinates = req.body.placeCoordinates;
 	const image = req.body.image;
+	const category = req.body.category;
 
 	const mapCityCoordinates = { latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude };
 	connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
 		if (err) throw err;
 	})
 
-	const pinsInfo = { place_name: place_name, address: address, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image };
+	const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image };
 	connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
 		if (err) throw err;
 	})

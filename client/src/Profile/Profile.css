@@ -5,24 +5,34 @@
 }
 
 .info-container {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 4%;
 }
 
-.user-info {
+/* .user-info {
   border: 2px solid yellow;
-}
-
-.user-info > h4:nth-child(2) {
-  text-align: left;
 }
 
 .user-pic {
   border: 2px solid green;
+} */
+
+.profile-area {
+  text-align: center;
+  margin-top: 3%;
 }
 
-#user {
-  font-size: 0.8em;
+.user-info > h4 {
+  text-align: left;
 }
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: rgb(163, 158, 158); /* Modern Browsers */
+}
+
+
