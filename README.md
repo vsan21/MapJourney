@@ -82,15 +82,15 @@ Whether it be road trips, domestic, international, or even staycations in your o
 ---
 
 ### Current features: 
-- Homepage search page (hrough Yelp to find attractions, restaurants, hikes, etc.)
-- Results display on new page
-- Click on specific searches to pin to map
-- Backend
-- User log in/sign up with Auth0
+- [x] Homepage search page (through Yelp to find attractions, restaurants, hikes, etc.)
+- [x] Results display on new page
+- [x] Button for user to add ('pin') specific search results to map
+- [x] Backend
+- [x] Auth0: login, signup, logout, and user profile 
+- [ ] Customized map category icons 
+- [ ] Route travel between pins based on multiple modes of transportation
 
 ### Later features: 
-- Customized map category icons 
-- Route travel between pins based on multiple modes of transportation
 - Save multiple maps of different cities/countries 
 - Allow user to go into "Storymode" 
     - Mark a place as "visited"
