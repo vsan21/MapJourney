@@ -20,21 +20,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //get city coordinates to create map
 app.get('/citycoords', (req, res) => {
+	let id = req.query.id;
 	//to set the center of the map
 	connection.query('SELECT latitude, longitude FROM maps LIMIT 1', (err, results) => {
 		if (err) throw err;
-		// console.log(JSON.parse(JSON.stringify(results)))
 		res.json(results);
 	})
 });
 
 //get pins information to create markers
 app.get('/pins', (req, res) => {
+	let id = req.query.id;
 	//to create markers/infowindow on map 
-	connection.query('SELECT place_name, address, map_category, latitude, longitude, image FROM pins', (err, results) => {
+	connection.query('SELECT place_name, address, map_category, latitude, longitude, image FROM pins WHERE user_id=?', id, (err, results) => {
 		if (err) throw err;
-		// console.log(JSON.parse(JSON.stringify(results)));
-		res.json(results);
+		if(results.length === 0) {
+			res.send('');
+
+		} else {
+			res.json(results);	
+		}
 	})
 });
 
@@ -72,17 +77,44 @@ app.post('/mapinfo', (req, res) => {
 	const image = req.body.image;
 	const category = req.body.category;
 
-	const mapCityCoordinates = { latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude };
-	connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
-		if (err) throw err;
+	//want to check if the city coordinates already exist for a user (so we don't store multiple, only once)
+	connection.query('SELECT * FROM maps WHERE latitude=? AND longitude=? AND user_id=?',[cityCoordinates.latitude, cityCoordinates.longitude, user_id], (err, results, fields) => {
+		if(err) throw err;
+		if(results.length === 0) {
+			const mapCityCoordinates = { latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude, user_id: user_id };
+			connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
+				if (err) throw err;
+			})
+		} 
 	})
 
-	const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image, user_id: user_id };
-	connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
-		if (err) throw err;
+	//check to see if a pin already exists in the db
+	connection.query('SELECT * FROM pins WHERE latitude=? AND longitude=?', [placeCoordinates.latitude, placeCoordinates.longitude], (err, results, fields) => {
+		if(err) throw err;
+		
+		//if not, then store it into the db
+		if(results.length === 0) {
+			const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image, user_id: user_id };
+			connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
+				if (err) throw err;
+				res.send('This was stored in the database and will pinned to the map!')
+			})
+		} else {
+			res.send('This place has already been pinned.')
+		}
 	})
 
-	res.send('This was stored in the database and will pinned to the map!')
+	// const mapCityCoordinates = { latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude, user_id: user_id };
+	// connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
+	// 	if (err) throw err;
+	// })
+
+	// const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image, user_id: user_id };
+	// connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
+	// 	if (err) throw err;
+	// })
+
+	// res.send('This was stored in the database and will pinned to the map!')
 })
 
 app.post('/userData', (req, res) => {
@@ -101,7 +133,7 @@ app.post('/userData', (req, res) => {
 				if (err) throw err;
 				connection.query('SELECT id, email FROM users WHERE email=?', email, (err, results) => {
 					res.json(results[0].id);
-					console.log('New user created.')	
+					console.log('New user created.')
 				})
 			})
 		//otherwise don't save their information

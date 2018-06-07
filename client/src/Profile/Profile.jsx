@@ -49,7 +49,7 @@ class Profile extends Component {
         const { profile } = this.state;
         return (
             <div>
-                <NavBar auth={this.props.auth} history={this.props.history} />
+                <NavBar auth={this.props.auth} history={this.props.history} id={this.props.location.state.id}/>
 
                 <div className="profile-area">
                     <h1>Welcome, {profile.given_name}!</h1>   
