@@ -34,6 +34,7 @@ export class Results extends Component {
     // }
 
 	render() {
+		console.log(`Results id: ${this.props.location.state.id}`)
 		return (
 			<div className='wrapper'>
 				<NavBar auth={this.props.auth} history={this.props.history} id={this.props.location.state.id} />

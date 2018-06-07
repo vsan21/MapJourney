@@ -8,7 +8,8 @@ export class NavBar extends Component {
 	//state holds the marker locations (array of individual objects)
 	state = {
 		city: [],
-		places: []
+		places: [],
+		id: this.props.id
 	}
 
 	// componentDidMount() {
@@ -74,6 +75,7 @@ export class NavBar extends Component {
 	}
 
 	goTo(route) {
+		console.log(`id before: ${this.props.id}`)
 		this.props.history.replace({
 			pathname: `/${route}`, 
 			state: {id: this.props.id}
@@ -89,7 +91,7 @@ export class NavBar extends Component {
 	}
 
 	render () {
-		console.log(this.props.id);
+		console.log(`Navbar id: ${this.props.id}`);
 		const { isAuthenticated } = this.props.auth;	
 		return (
 			<div>
@@ -150,7 +152,7 @@ export class NavBar extends Component {
 				{this.state.places.length > 0 &&
 					<Redirect to={{
 						pathname: '/mymaps',
-						state: { city: this.state.city, places: this.state.places }
+						state: { city: this.state.city, places: this.state.places, id: this.state.id}
 					}} />
 				}
 			</div>

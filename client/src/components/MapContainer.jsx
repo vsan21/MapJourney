@@ -7,7 +7,7 @@ export class MapContainer extends Component {
 	render() {
 		return (
 			<div>
-				<NavBar auth={this.props.auth} history={this.props.history}/>
+				<NavBar auth={this.props.auth} history={this.props.history} id={this.props.location.state.id}/>
 				{/* passing the Google Maps props down to child so it has access */}
 				<Map 
 					google={this.props.google} 

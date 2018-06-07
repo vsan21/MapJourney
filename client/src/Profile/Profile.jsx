@@ -47,6 +47,7 @@ class Profile extends Component {
 
     render() {
         const { profile } = this.state;
+        console.log(this.props.location.state);
         return (
             <div>
                 <NavBar auth={this.props.auth} history={this.props.history} id={this.props.location.state.id}/>
