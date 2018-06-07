@@ -9,8 +9,13 @@ export class Search extends Component {
 	state = {
 		city: '',
 		results: [],
-		profile: {}
+		profile: {},
+		id: ''
 	};
+
+	// componentDidMount() {
+	// 	this.saveUserData();
+	// }
 
 	componentWillMount() {
         const { userProfile, getProfile } = this.props.auth;
@@ -19,11 +24,32 @@ export class Search extends Component {
         if (!userProfile) {
             getProfile((err, profile) => {
                 this.setState({ profile });
-                // this.saveUserData(profile);            
+                this.saveUserData(profile);           
             });
         } else {
             this.setState({ profile: userProfile });
         }
+	}
+	
+	saveUserData = (profile) => {
+		// let profile = this.state.profile;
+        axios({
+            method: 'post',
+            url: '/userData',
+            data: {
+                first_name: profile.given_name,
+                last_name: profile.family_name,
+                email: profile.email,
+                date: profile.updated_at
+            },
+            headers: {
+                'content-type': 'application/json'
+            },
+        }).then(res => {
+            this.setState({id: res.data})
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
 	handleSubmit = (e) => {
@@ -74,11 +100,10 @@ export class Search extends Component {
 	}
 
 	render() {
-		console.log(this.state.profile);
 		const { isAuthenticated } = this.props.auth;
 		return (
 			<div>
-				<NavBar auth={this.props.auth} history={this.props.history}/>
+				<NavBar auth={this.props.auth} history={this.props.history} id={this.state.id} />
 				<div className='cover'>
 					<div className='welcome'>
 						{
@@ -101,7 +126,7 @@ export class Search extends Component {
 					{this.state.results.length > 0 &&
 						<Redirect to={{
 							pathname: '/results',
-							state: { city: this.state.city, results: this.state.results, profile: this.state.profile }
+							state: { city: this.state.city, results: this.state.results, id: this.state.id }
 						}} />
 					}
 

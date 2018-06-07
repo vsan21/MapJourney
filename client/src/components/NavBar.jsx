@@ -10,13 +10,17 @@ export class NavBar extends Component {
 		places: []
 	}
 
-	getCityCoords = () => {
+	// componentDidMount() {
+	// 	console.log(this.props.saveUserData, typeof this.props.saveUserData)
+	// }
+
+	getCityCoords = (id) => {
 	    axios({
 	        method: 'get',
-	        url: '/citycoords',
-	        data: {
-
-	        },
+			url: '/citycoords',
+			params: {
+				id: id
+			},
 	        headers: {
 	            'content-type': 'application/json'
 	        }
@@ -32,29 +36,36 @@ export class NavBar extends Component {
 	        })
 	}
 
-	getPins = () => {
+	getPins = (id) => {
 		axios({
 	        method: 'get',
-	        url: '/pins',
+			url: '/pins',
+			params: {
+				id: id
+			},
 	        headers: {
 	            'content-type': 'application/json'
 	        }
 	    })
 	        .then(res => {
-				let places = [];
-				res.data.forEach(place => {
-					places.push({
-						coordinate: { lat: place.latitude, lng: place.longitude },
-						iconImage: '',
-						category: '',
-						content: `
+				if(res.data === '') {
+					alert('You currently have no maps.')
+				} else {
+					let places = [];
+					res.data.forEach(place => {
+						places.push({
+							coordinate: { lat: place.latitude, lng: place.longitude },
+							iconImage: '',
+							category: '',
+							content: `
 							<img src=${place.image} alt=${place.place_name} width='100px' height='100px'/>
 							<h1>${place.place_name}</h1>
 							<p>Address: ${place.address}</p>
 						`
+						})
 					})
-				})
-				this.setState({places: places})
+					this.setState({ places: places })
+				}
 	        })
 	        .catch(err => {
 	            console.log(err);
@@ -62,7 +73,10 @@ export class NavBar extends Component {
 	}
 
 	goTo(route) {
-		this.props.history.replace(`/${route}`)
+		this.props.history.replace({
+			pathname: `/${route}`, 
+			state: {id: this.props.id}
+		})
 	}
 
 	login() {
@@ -74,6 +88,7 @@ export class NavBar extends Component {
 	}
 
 	render () {
+		console.log(this.props.id);
 		const { isAuthenticated } = this.props.auth;	
 		return (
 			<div>
@@ -89,8 +104,8 @@ export class NavBar extends Component {
 
 						<Nav pullRight>
 							<NavItem eventKey={1} onClick={() => {
-								this.getCityCoords(); 
-								this.getPins() 
+								this.getCityCoords(this.props.id); 
+								this.getPins(this.props.id) 
 							}}>
 								My Maps
       						</NavItem>
