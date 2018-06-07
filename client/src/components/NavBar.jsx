@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import './NavBar.css';
 
 export class NavBar extends Component {
 	//state holds the marker locations (array of individual objects)
@@ -92,7 +93,7 @@ export class NavBar extends Component {
 		const { isAuthenticated } = this.props.auth;	
 		return (
 			<div>
-				<Navbar fluid collapseOnSelect>
+				<Navbar fluid collapseOnSelect id='navbar'>
 					<Navbar.Header>
 						<Navbar.Brand>
 							<a href="/search">MapJourney</a>

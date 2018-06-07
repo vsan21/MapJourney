@@ -89,7 +89,7 @@ app.post('/mapinfo', (req, res) => {
 	})
 
 	//check to see if a pin already exists in the db
-	connection.query('SELECT * FROM pins WHERE latitude=? AND longitude=?', [placeCoordinates.latitude, placeCoordinates.longitude], (err, results, fields) => {
+	connection.query('SELECT * FROM pins WHERE latitude=? AND longitude=? AND user_id=?', [placeCoordinates.latitude, placeCoordinates.longitude, user_id], (err, results, fields) => {
 		if(err) throw err;
 		
 		//if not, then store it into the db

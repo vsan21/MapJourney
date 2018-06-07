@@ -1,0 +1,4 @@
+/* to override the react-bootstrap navbar and close the gap btw the navbar and the other content */
+.navbar {
+    margin-bottom: 0px;
+}
