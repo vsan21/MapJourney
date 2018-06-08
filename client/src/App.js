@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 import { Redirect } from 'react-router';
-
 import './App.css';
 import { Search } from './components/Search';
 import { Results } from './components/Results';
 import  MapContainer  from './components/MapContainer';
-import Callback from './Callback/Callback';
-import Auth from './Auth/Auth';
+import Callback from './authentication/Callback/Callback';
+import Auth from './authentication/Auth/Auth';
 import Login from './Login';
 import Profile from './Profile/Profile';
 import history from './history';

@@ -1,6 +1,6 @@
-#addbtn {
-    margin-right: 2em;
-    display: flex;
-    justify-content: flex-end;
+/* #addbtn {
+	position: absolute;
+	right: 20%;
+	margin-bottom: 1.5em;
     border: 5px solid purple;
-}
+} */

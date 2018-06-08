@@ -103,18 +103,6 @@ app.post('/mapinfo', (req, res) => {
 			res.send('This place has already been pinned.')
 		}
 	})
-
-	// const mapCityCoordinates = { latitude: cityCoordinates.latitude, longitude: cityCoordinates.longitude, user_id: user_id };
-	// connection.query('INSERT INTO maps SET ?', mapCityCoordinates, (err, results, fields) => {
-	// 	if (err) throw err;
-	// })
-
-	// const pinsInfo = { place_name: place_name, address: address, map_category: category, latitude: placeCoordinates.latitude, longitude: placeCoordinates.longitude, image: image, user_id: user_id };
-	// connection.query('INSERT INTO pins SET ?', pinsInfo, (err, results, fields) => {
-	// 	if (err) throw err;
-	// })
-
-	// res.send('This was stored in the database and will pinned to the map!')
 })
 
 app.post('/userData', (req, res) => {
@@ -143,14 +131,6 @@ app.post('/userData', (req, res) => {
 			console.log('User already exists.')
 		}
 	})
-
-	// const userData = {first_name: first_name, last_name: last_name, email: email}
-	// connection.query('INSERT INTO users SET ?', userData, (err, results, fields) => {
-	// 	if(err) throw err;
-	// 	console.log(results);
-	// })
-	// res.send('User stored into database.')
-
 })
 
 const port = process.env.PORT || 8000;

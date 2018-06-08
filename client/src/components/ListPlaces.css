@@ -2,48 +2,45 @@
 
 /* Results page styling */
 td {
-	padding-top: 2em;
-	padding-bottom: 1em;
+	padding-top: 3.3rem;
+	padding-bottom: 1rem;
+}
+
+.description > p {
+	width: 100%;	
 }
 
 .description > p:first-child {
-	font-size: 2.2em;
+	font-size: 3rem;
 }
 
 .description > p:nth-child(2) {
-	font-size: 1.2em;
+	font-size: 1.7rem;
 }
-
-/* #addbtn {
-	margin-right: 2em;
-} */
 
 .image {
-	margin-left: 5em;
+	margin-left: 7rem;	
 	border: 5px solid green;
-	max-width: 200px;
-	max-height: 200px;
-	overflow: hidden;
 }
 
-img {
-	max-width: 100%;
-	height: auto;
-	width: auto\9;
+.image > img {
+	/* height: 200px;
+	width: 200px; */
+	width: 25vh;
+	height: 25vh;
 }
 
 .description {
-	margin-left: 6em;
-	margin-right: 8em;
+	margin-left: 5.6rem;
+	margin-right: 7rem;
+	width: 50vh;
+	height: 25vh;
 	border: 5px solid blue;
 }
 
-#addbtn {
-	position: fixed;
-    right: 20%;
-    /* display: flex;
-    justify-content: flex-end; */
-    border: 5px solid purple;
+#addbtn {	
+	/* margin-bottom: 1.5em; */
+	margin-right: 2rem;
 }
 
 
@@ -60,14 +57,14 @@ h4 {
 }
 
 form {
-	margin-left: 6em;
-	margin-top: 1.5em;
-	margin-bottom: 1em;
+	margin-left: 8.5rem;	
+	margin-top: 2.1rem;
+	margin-bottom: 1rem;
 }
 
 input[type='radio'] {
-	margin-bottom: 1em;
-	margin-right: 0.7em;
+	margin-bottom: 1.4rem;
+	margin-right: 1rem;
 }
 
 #modal-header {
@@ -77,7 +74,7 @@ input[type='radio'] {
 #modal-title {
 	text-align: center;
 	font-family: 'Satisfy', cursive;
-	font-size: 2.3em;
+	font-size: 3.2rem;
 	font-weight: bold;
 }
 

@@ -2,3 +2,11 @@
 .navbar {
     margin-bottom: 0px;
 }
+
+.navbar-brand {
+    font-size: 2rem;
+}
+
+li > a {
+    font-size: 1.5rem;
+}
