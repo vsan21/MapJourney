@@ -13,15 +13,17 @@ import star4 from '../images/small_4@3x.png';
 import star4_half from '../images/small_4_half@3x.png';
 import star5 from '../images/small_5@3x.png';
 import './ListPlaces.css';
-import AddToMapButton from './AddToMapButton';
+// import AddToMapButton from './AddToMapButton';
 
 export class ListPlaces extends Component {
 	state = {
 		show: false,
+		btnColor: 'primary',
+		btnText: 'Add To Map'
 	}
 
 	handleShow = () => {
-		this.setState({ show: true });
+		this.setState({ show: true, btnColor: 'success', btnText: 'Saved!' });
 	}
 
 	handleClose = () => {
@@ -68,6 +70,7 @@ export class ListPlaces extends Component {
 	}
 
 	render() {
+		
 		const place = this.props.place;
 		const index = this.props.index;
 
@@ -93,7 +96,6 @@ export class ListPlaces extends Component {
 		}
 
 		return (
-			// <div className='place-wrapper'>
 				<tr>
 					<td>
 						<div className="image">
@@ -114,10 +116,10 @@ export class ListPlaces extends Component {
 					<td>
 						{/* <AddToMapButton handleShow={this.handleShow}/> */}
 						<Button
-							bsStyle="primary" bsSize="large"
+							bsStyle={this.state.btnColor} bsSize="large"
 							id='addbtn' data-id={index} onClick={this.handleShow}
 						>
-							Add to Map
+							{this.state.btnText}
 						</Button>
 
 						<Modal bsSize='small' backdrop='static' keyboard={false} show={this.state.show} >
@@ -150,31 +152,7 @@ export class ListPlaces extends Component {
 						</Modal>
 					</td>
 				</tr>
-			// </div>
+			
 		);
 	}
 }
-
-//new way of writing classes; don't get passed in the props/state of React Component (to save space)
-//({title}) -> same as writing {this.props.title}
-// const Title = ({ title, className }) => (
-// 	<h1 className={className}>{title}</h1>
-// );
-
-// <Title title="hey" />
-
-// class Title extends React.Component {
-// 	render () {
-// 		const title = props.title;
-// 		return <h1>{title}</h1>;
-// 	}
-// }
-
-// const AddToMapButton = () => (
-// 	<Button
-// 		bsStyle="primary" bsSize="large"
-// 		id='addbtn' data-id={index} onClick={this.handleShow}
-// 	>
-// 		Add to Map
-// 	</Button>
-// )

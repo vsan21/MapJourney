@@ -12,10 +12,6 @@ export class NavBar extends Component {
 		id: this.props.id
 	}
 
-	// componentDidMount() {
-	// 	console.log(this.props.saveUserData, typeof this.props.saveUserData)
-	// }
-
 	getCityCoords = (id) => {
 	    axios({
 	        method: 'get',
