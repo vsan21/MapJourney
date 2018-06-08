@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import './Login.css';
+import video from './images/background-video.mp4';
 
 class Login extends Component {
 	goTo(route) {
@@ -61,6 +62,9 @@ class Login extends Component {
 						}
 					</div> 
 				</div>
+				<video className="background-video" loop autoPlay muted>
+					<source src={video} type="video/mp4" />
+				</video>
 			</div>
 		);
 	}

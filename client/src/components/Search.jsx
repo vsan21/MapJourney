@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Search.css';
 import { NavBar } from './NavBar';
-import video from '../images/background-video.mp4';
+// import video from '../images/background-video.mp4';
 
 export class Search extends Component {
 	state = {
@@ -120,9 +120,9 @@ export class Search extends Component {
 						<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
 						<button type='submit'>Search</button>
 					</form>
-					<video className="background-video" loop autoPlay muted>
+					{/* <video className="background-video" loop autoPlay muted>
 						<source src={video} type="video/mp4" />
-					</video>
+					</video> */}
 
 					{/* redirecting the results to a new page */}
 					{this.state.results.length > 0 &&
