@@ -1,23 +1,47 @@
 .login-page {
     height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+/*Video*/
+.background-video {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
 }
 
 .login-intro {
-    border: 2px solid green;
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
     background-color: rgba(245, 245, 245, 0.808);
-    opacity:0.96;
+    opacity: 0.96;
+    z-index: 10;
+    position: relative;
+}
+
+.login-intro > h3 {
+    font-size: 2vw;
+}
+
+.login-intro > p {
+    font-size: 1vw;
 }
 
 .login-buttons {
     width: 30%;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 1.5rem;
+}
+
+.btn-margin {
+    font-size: 1vw;
 }

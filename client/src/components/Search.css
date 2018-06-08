@@ -1,11 +1,3 @@
-/* need to set the height to 100vh so that we can move the form vertically */
-.cover  {
-    height: 90vh;
-    width: 100%;
-}
-
-/*Video*/
-
 /*Hack to get them to align properly */
 /* in the form, for all elements where type is not date */
 .flex-form > *:not([type="date"]) {
@@ -48,15 +40,29 @@
 }
 
 /*Flexbox Starts Here*/
+/* need to set the height to 100vh so that we can move the form vertically */
 /* to center the form in the middle */
 .cover {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../images/login.jpg');
+    background-position: center center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid green;
 }
-  
+ 
+/* need to set the height to 100vh so that we can move the form vertically
+.cover  {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../images/login.jpg');
+    background-position: center center;
+    background-size: cover;
+} */
+
 /* forms a gray border around the form */
 .flex-form {
     display: flex;
@@ -68,3 +74,4 @@
     margin-left: 6%;
     z-index: 10;
 }
+

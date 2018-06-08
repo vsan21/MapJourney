@@ -1,12 +1,16 @@
 /* to override the react-bootstrap navbar and close the gap btw the navbar and the other content */
 .navbar {
     margin-bottom: 0px;
+    min-height: 69px;
 }
 
 .navbar-brand {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    padding-top: 22px;
 }
 
-li > a {
-    font-size: 1.5rem;
+.navbar-nav > li > a {
+    padding-top: 22px;
+    font-size: 1.7rem;
 }
+
