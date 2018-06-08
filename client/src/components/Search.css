@@ -2,9 +2,15 @@
 .cover  {
     height: 90vh;
     width: 100%;
+    position: relative;
 }
 
 /*Video*/
+.background-video {
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
 
 /*Hack to get them to align properly */
 /* in the form, for all elements where type is not date */
@@ -68,3 +74,4 @@
     margin-left: 6%;
     z-index: 10;
 }
+

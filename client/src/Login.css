@@ -1,3 +1,8 @@
+body {
+    background-image: url('./images/login.jpg');
+    background-position: center center;
+}
+
 .login-page {
     height: 100vh;
     display: flex;
@@ -7,17 +12,26 @@
 
 .login-intro {
     border: 2px solid green;
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
     background-color: rgba(245, 245, 245, 0.808);
-    opacity:0.96;
+    opacity: 0.96;
+}
+
+.login-intro > h3 {
+    font-size: 3.5rem;
+}
+
+.login-intro > p {
+    font-size: 1.7rem;
 }
 
 .login-buttons {
     width: 30%;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 1.5rem;
 }
