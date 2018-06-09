@@ -39,7 +39,7 @@ export class ListPlaces extends Component {
 		let checkCategory = document.querySelector('input[name="category"]:checked');
 		//checking to see if user selected any category or not
 		if (checkCategory === null) {
-			return;
+			map_category = null;
 		} else {
 			map_category = checkCategory.value;
 		}

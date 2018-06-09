@@ -9,7 +9,8 @@ export class NavBar extends Component {
 	state = {
 		city: [],
 		places: [],
-		id: this.props.id
+		id: this.props.id, 
+		icon: ''
 	}
 
 	getCityCoords = (id) => {
@@ -53,7 +54,7 @@ export class NavBar extends Component {
 					res.data.forEach(place => {
 						places.push({
 							coordinate: { lat: place.latitude, lng: place.longitude },
-							iconImage: '',
+							// iconImage: '',
 							category: place.map_category,
 							content: `
 							<img src=${place.image} alt=${place.place_name} width='100px' height='100px'/>
@@ -89,7 +90,7 @@ export class NavBar extends Component {
 	render () {
 		console.log(`Navbar id: ${this.props.id}`);
 		const { isAuthenticated } = this.props.auth;
-		
+
 		return (
 			<div>
 				<Navbar fluid collapseOnSelect id='navbar'>
@@ -113,12 +114,6 @@ export class NavBar extends Component {
 									  </NavItem>
 								)
 							}
-							{/* <NavItem eventKey={1} onClick={() => {
-								this.getCityCoords(this.props.id); 
-								this.getPins(this.props.id) 
-							}}>
-								My Maps
-      						</NavItem> */}
 							<NavDropdown eventKey={2} title="Account" id="basic-nav-dropdown">
 								{
 									isAuthenticated() && (

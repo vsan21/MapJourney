@@ -13,10 +13,6 @@ export class Search extends Component {
 		id: ''
 	};
 
-	// componentDidMount() {
-	// 	this.saveUserData();
-	// }
-
 	componentWillMount() {
         const { userProfile, getProfile } = this.props.auth;
         //if there is already not a userProfile, then getProfile
@@ -32,7 +28,6 @@ export class Search extends Component {
 	}
 	
 	saveUserData = (profile) => {
-		// let profile = this.state.profile;
         axios({
             method: 'post',
             url: '/userData',
@@ -110,7 +105,7 @@ export class Search extends Component {
 						{
 							isAuthenticated() && (
 							<h4>
-								Welcome! Where is your next adventure?
+								Where is your next adventure?
 							</h4>
 							)
 						}
@@ -120,9 +115,6 @@ export class Search extends Component {
 						<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
 						<button type='submit'>Search</button>
 					</form>
-					{/* <video className="background-video" loop autoPlay muted>
-						<source src={video} type="video/mp4" />
-					</video> */}
 
 					{/* redirecting the results to a new page */}
 					{this.state.results.length > 0 &&
