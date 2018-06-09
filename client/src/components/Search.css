@@ -54,15 +54,6 @@
     align-items: center;
 }
  
-/* need to set the height to 100vh so that we can move the form vertically
-.cover  {
-    height: 100vh;
-    width: 100%;
-    background-image: url('../images/login.jpg');
-    background-position: center center;
-    background-size: cover;
-} */
-
 /* forms a gray border around the form */
 .flex-form {
     display: flex;
