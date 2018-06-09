@@ -89,7 +89,7 @@ Whether it be road trips, domestic, international, or even staycations in your o
 - [x] Map creates markers of user's places (more defined -> now it will only show the places of the logged in user's saved pins, as opposed to every result from all users) 
 - [x] Map markers have infowindow 
 - [x] Auth0: login, signup, logout, and user profile 
-- [ ] Customized map category icons 
+- [x] Custom map category icons 
 - [ ] Route travel between pins based on multiple modes of transportation
 
 ### Later features: 
