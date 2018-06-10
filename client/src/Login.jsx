@@ -21,9 +21,13 @@ class Login extends Component {
 
 		return (
 			<div className='login-page'>
-				<div className='login-intro'>
+				<div className='login-container'>
 					<h3>MapJourney</h3>
 					<p>Interactive Travel Mapping </p>
+					{/* <div className='login-intro' id='first-part'>Escape</div>
+					<div className='login-intro' id='last-part'>
+						<span>into amazing experiences</span>
+					</div> */}
 					<div className="login-buttons">
 						{
 							isAuthenticated() && (
