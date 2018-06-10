@@ -111,8 +111,11 @@ export class Search extends Component {
 						}
 					</div>
 					<form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
+
 						<input type='text' name='term' placeholder='Ex. Hikes, Museums...' />
+
 						<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
+
 						<button type='submit'>Search</button>
 					</form>
 

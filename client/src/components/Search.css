@@ -1,45 +1,6 @@
-/*Hack to get them to align properly */
-/* in the form, for all elements where type is not date */
-.flex-form > *:not([type="date"]) {
-    border-top:1px solid white;
-    border-bottom:1px solid white;
-}
+@-webkit-keyframes typing { from { width: 0; } }
+@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
 
-/* customizing search button */
-.flex-form > button {
-    background:#FF5A5F;
-    border-top: 1px solid #FF5A5F;
-    border-bottom: 1px solid #FF5A5F;
-    color:white;
-    border-radius: 5px;
-
-}
-
-/* making sure to put form in front of background video */
-.flex-form {
-    z-index: 10;
-    position: relative;
-}
-
-/* for every element in the form */
-.flex-form > * {
-    border: 0;
-    padding: 10px;
-    background: white;
-    line-height: 50px;
-    font-size: 20px;
-    border-radius: 0;
-    outline: 0;
-    border-right: 1px solid rgba(0,0,0,0.2);
-    /* -webkit-appearance: none; */
-}
-
-/* taking off the border shadow from button */
-.flex-form > *:last-child {
-    border-right: 0;
-}
-
-/*Flexbox Starts Here*/
 /* need to set the height to 100vh so that we can move the form vertically */
 /* to center the form in the middle */
 .cover {
@@ -53,16 +14,60 @@
     justify-content: center;
     align-items: center;
 }
- 
+
+/* making sure to put form in front of background video */
 /* forms a gray border around the form */
 .flex-form {
+    z-index: 10;
+    position: relative;
     display: flex;
     border: 20px solid rgba(0,0,0,0.3);
     border-radius: 5px;
 }
 
+/* for every element in the form */
+.flex-form > * {
+    border: 0;
+    padding: 10px;
+    background: white;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 0;
+    outline: 0;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+/* in the form, for all elements where type is not date */
+.flex-form > *:not([type="date"]) {
+    border-top:1px solid white;
+    border-bottom:1px solid white;
+}
+
+/* customizing search button */
+.flex-form > button {
+    background:#FF5A5F;
+    border-top: 1px solid #FF5A5F;
+    border-bottom: 1px solid #FF5A5F;
+    color:white;
+    border-radius: 5px;
+    /* taking off the border shadow from button */
+    border-right: 0;
+}
+
 .welcome {
-    margin-left: 6%;
+    margin-left: 7%;
     z-index: 10;
 }
 
+.welcome > h4 {
+    font: bold 170% Consolas, Monaco, monospace;
+    color: white;
+    text-align: center;    
+    width: 16.5em; 
+    width: 29ch;
+    margin-right: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-animation: typing 2s steps(21, end),
+               blink-caret .5s step-end infinite alternate;
+}

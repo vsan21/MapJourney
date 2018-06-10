@@ -1,55 +1,64 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
 /* Results page styling */
-td {
+/* td {
 	padding-top: 3.3rem;
 	padding-bottom: 1rem;
 }
 
 .description > p {
 	width: 100%;	
-}
+} */
 
 .description > p:first-child {
-	font-size: 3rem;
+	font-size: 4vw;
 }
 
 .description > p:nth-child(2) {
-	font-size: 1.7rem;
+	font-size: 2.3vw;
 }
 
-.image {
+/* .image {
 	margin-left: 7rem;	
 	border: 5px solid green;
-}
+} */
 
-.image > img {
-	/* height: 200px;
-	width: 200px; */
+/* .image > img {
 	width: 25vh;
 	height: 25vh;
-}
+	margin: 0 auto;
+} */
 
-.description {
+/* .description {
 	margin-left: 5.6rem;
 	margin-right: 7rem;
 	width: 50vh;
 	height: 25vh;
 	border: 5px solid blue;
-}
+} */
 
-#addbtn {	
-	/* margin-bottom: 1.5em; */
+/* #addbtn {	
 	margin-right: 2rem;
-}
+} */
 
+#addbtn {
+	font-size: 2.5vw;
+}
 
 /* review number style */
 .description > p:last-child {
 	color: gray;
 	margin-bottom: 2%;
+	font-size: 1.8vw;
 }
 
+/* override boostrap img block display */
+/* .thumbnail a>img {
+	display: inline;
+} */
+.img-responsive, .thumbnail a>img {
+	display: inline-flex;
+}
 
 /* Modal styling */
 h4 {

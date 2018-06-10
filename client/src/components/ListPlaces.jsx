@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Image } from 'react-bootstrap';
 import axios from 'axios';
 import logo from '../images/yelp-logo2.png';
 import star0 from '../images/small_0@3x.png';
@@ -91,7 +91,7 @@ export class ListPlaces extends Component {
 		let stars;
 		for(let key in starMap) {
 			if(key === starsNum) {
-				stars = <img src={starMap[key]} alt={`${place.stars} stars`} />;	
+				stars = <Image src={starMap[key]} alt={`${place.stars} stars`} responsive />;	
 			}
 		}
 
@@ -99,7 +99,7 @@ export class ListPlaces extends Component {
 				<tr>
 					<td>
 						<div className="image">
-							<img src={place.image} alt={place.name} width='200px' height='200px' />
+							<Image src={place.image} alt={place.name} responsive rounded />
 						</div>
 					</td>
 					<td>
@@ -108,7 +108,7 @@ export class ListPlaces extends Component {
 							<p>{place.address}</p>
 							<p>
 								{stars}
-								<a href={place.yelpLink}><img src={logo} alt={logo} /></a>
+								<a href={place.yelpLink}><Image src={logo} alt={logo} responsive /></a>
 							</p>
 							<p><i>{place.reviewCount} Reviews</i></p>
 						</div>
@@ -137,6 +137,7 @@ export class ListPlaces extends Component {
 									<input type='radio' name='category' value='hike' /> Hike<br />
 									<input type='radio' name='category' value='photo-op' /> Photo-op<br />
 									<input type='radio' name='category' value='romantic' /> Romantic<br />
+									<input type='radio' name='category' value='garden' /> Garden<br />		
 								</form>
 							</Modal.Body>
 							<Modal.Footer>
@@ -152,7 +153,6 @@ export class ListPlaces extends Component {
 						</Modal>
 					</td>
 				</tr>
-			
 		);
 	}
 }
