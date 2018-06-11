@@ -45,7 +45,7 @@ export class Search extends Component {
         }).catch(err => {
             console.log(err);
         })
-    }
+	}
 
 	handleSubmit = (e) => {
 		//prevent form from refreshing and redirecting to '/results'

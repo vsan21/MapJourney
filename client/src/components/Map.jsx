@@ -13,7 +13,11 @@ import './Map.css';
 
 export class Map extends Component {
 	state = {
-		
+		mapWidth: '100vw',
+		panelWidth: '0vw',
+		panelDisplay: 'none',
+		map: '',
+		geocoder: ''
 	}
 
 	// when component mounts, invoke loadMap function
@@ -75,6 +79,18 @@ export class Map extends Component {
 			//creating a new Map (var map = new google.maps.Map(document.getElementById('map'), options)
 			this.map = new maps.Map(node, mapConfig);
 
+			//so that the map and geocoder can be accessed anywhere
+			this.setState({map: this.map, geocoder: new google.maps.Geocoder()})
+
+			//custom control ('Get Directions'); puts it at the TOP_CENTER of the map
+            const centerControlDiv = document.getElementById('control-div');
+            centerControlDiv.index = 1;
+            this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+            const directionsDisplay = new google.maps.DirectionsRenderer;
+            const directionsService = new google.maps.DirectionsService;
+            directionsDisplay.setMap(this.map);
+
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
 			this.props.places.forEach(place => {
@@ -105,15 +121,80 @@ export class Map extends Component {
 		}
 	}
 
+	//opens the right panel (for directions)
+    loadDirectionsPanel = () => {
+		this.setState({mapWidth: '65vw', panelWidth: '35vw', panelDisplay: 'flex'})
+	}
+    
+    //geocode -> converts address into coordinates (also makes marker)
+    geocodeAddress = (e) => {
+        e.preventDefault();
+        const address = e.target.address.value;
+        console.log(address);
+
+        this.state.geocoder.geocode( {'address': address}, (results, status) => {
+            if (status === 'OK') {
+                const hotelCoords = results[0].geometry.location;
+                console.log(hotelCoords);
+                console.log(results[0].formatted_address);
+
+                this.state.map.setCenter(hotelCoords);
+                const marker = new this.props.google.maps.Marker({
+                    position: hotelCoords,
+                    map: this.state.map
+                })
+            } else {
+                alert('Geocode was not successful for the following reasons: ' + status);
+            }
+        })
+    }
+
 	render() {
 		//NEEDED in order for map to display 
-		const style = {
-			width: '100vw',
-			height: '100vh'
+		// const style = {
+		// 	width: '100vw',
+		// 	height: '100vh'
+		// }
+
+		const mapStyle = {
+			width: this.state.mapWidth,
+			height: '90vh',
+			border: '2px solid yellow'
 		}
+
+		const rightPanel = {
+			width: this.state.panelWidth,
+			border: '2px solid orange',
+			display: this.state.panelDisplay
+		}
+		
 		return (	
-			<div ref='map' style={style}>
-				loading map...
+			
+
+			<div>
+				{/* attaching the map styles */}
+				<div className="app">
+					<div ref='map' className='map' style={mapStyle}>
+						loading map...
+					</div>
+
+					<div id="control-div">
+						<div id="controlUI" onClick={this.loadDirectionsPanel}>
+							<div id="controlText">
+								Get Directions
+							</div>
+						</div>
+					</div>
+
+					<div id='right-panel' style={rightPanel}>
+						<form onSubmit={this.geocodeAddress} className='address-form'>
+							<label htmlFor="address"><strong>Your Hotel Address: </strong></label>
+							<input type="text" name="address" />
+							<button id='hotelbtn'>Submit</button>
+						</form>
+					</div>
+
+				</div>
 			</div>
 		);
 	}
