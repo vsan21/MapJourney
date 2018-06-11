@@ -1,64 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
 /* Results page styling */
-/* td {
-	padding-top: 3.3rem;
-	padding-bottom: 1rem;
+td {
+	vertical-align: middle !important;
+	text-align: center;
 }
 
-.description > p {
-	width: 100%;	
-} */
+/* override boostrap img block display */
+.img-responsive, .thumbnail a>img {
+	display: inline-flex;
+}
+
+.image > img {
+	width: 30vh;
+	height: 30vh;
+	margin: 0 auto;
+}
 
 .description > p:first-child {
-	font-size: 4vw;
+	font-size: 2.5vw;
 }
 
 .description > p:nth-child(2) {
-	font-size: 2.3vw;
+	font-size: 1.7vw;
 }
 
-/* .image {
-	margin-left: 7rem;	
-	border: 5px solid green;
-} */
+#stars {
+	height: 3.5vh;
+}
 
-/* .image > img {
-	width: 25vh;
-	height: 25vh;
-	margin: 0 auto;
-} */
-
-/* .description {
-	margin-left: 5.6rem;
-	margin-right: 7rem;
-	width: 50vh;
-	height: 25vh;
-	border: 5px solid blue;
-} */
-
-/* #addbtn {	
-	margin-right: 2rem;
-} */
-
-#addbtn {
-	font-size: 2.5vw;
+#logo {
+	height: 5.8vh;
 }
 
 /* review number style */
 .description > p:last-child {
 	color: gray;
 	margin-bottom: 2%;
-	font-size: 1.8vw;
+	font-size: 1.2vw;
 }
 
-/* override boostrap img block display */
-/* .thumbnail a>img {
-	display: inline;
-} */
-.img-responsive, .thumbnail a>img {
-	display: inline-flex;
+#addbtn {
+	font-size: 1.5vw;
 }
+
 
 /* Modal styling */
 h4 {

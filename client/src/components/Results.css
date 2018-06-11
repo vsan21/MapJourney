@@ -1,9 +1,3 @@
-/* table {
-    width: 70vw;
-    margin: 0 auto;
-    display: flex;
-    background-color: rgba(245, 245, 245, 0.808);
-    opacity:0.96;
-    border: 3px solid red;
-    position: relative;
-} */
+th {
+    display: none;
+}

@@ -10,7 +10,7 @@ export class Results extends Component {
 		return (
 			<div className='wrapper'>
 				<NavBar auth={this.props.auth} history={this.props.history} id={this.props.location.state.id} />
-				<Table responsive bordered>
+				<Table responsive>
 					<thead>
 						<tr>
 							<th></th>

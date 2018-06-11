@@ -9,8 +9,13 @@ import Museum from '../images/icons/museum.svg';
 import PhotoOp from '../images/icons/photoop.svg';
 import Restaurant from '../images/icons/restaurant.svg';
 import Romantic from '../images/icons/romantic.svg';
+import './Map.css';
 
 export class Map extends Component {
+	state = {
+		
+	}
+
 	// when component mounts, invoke loadMap function
 	componentDidMount() {
 		this.loadMap();
@@ -31,88 +36,6 @@ export class Map extends Component {
 				stylers: [{ visibility: 'off' }]
 			}
 		];
-
-		//retro style
-		// const styles = [
-		// 	{ elementType: 'geometry', stylers: [{ color: '#ebe3cd' }] },
-		// 	{ elementType: 'labels.text.fill', stylers: [{ color: '#523735' }] },
-		// 	{ elementType: 'labels.text.stroke', stylers: [{ color: '#f5f1e6' }] },
-		// 	{
-		// 		featureType: 'administrative',
-		// 		elementType: 'geometry.stroke',
-		// 		stylers: [{ color: '#c9b2a6' }]
-		// 	},
-		// 	{
-		// 		featureType: 'administrative.land_parcel',
-		// 		elementType: 'geometry.stroke',
-		// 		stylers: [{ color: '#dcd2be' }]
-		// 	},
-		// 	{
-		// 		featureType: 'administrative.land_parcel',
-		// 		elementType: 'labels.text.fill',
-		// 		stylers: [{ color: '#ae9e90' }]
-		// 	},
-		// 	{
-		// 		featureType: 'landscape.natural',
-		// 		elementType: 'geometry',
-		// 		stylers: [{ color: '#dfd2ae' }]
-		// 	},
-		// 	{
-		// 		featureType: "poi",
-		// 		elementType: "labels",
-		// 		stylers: [{ visibility: "off" }]
-		// 	},
-		// 	{
-		// 		featureType: 'road',
-		// 		elementType: 'geometry',
-		// 		stylers: [{ color: '#f5f1e6' }]
-		// 	},
-		// 	{
-		// 		featureType: 'road.arterial',
-		// 		elementType: 'geometry',
-		// 		stylers: [{ color: '#fdfcf8' }]
-		// 	},
-		// 	{
-		// 		featureType: 'road.highway',
-		// 		elementType: 'geometry',
-		// 		stylers: [{ color: '#f8c967' }]
-		// 	},
-		// 	{
-		// 		featureType: 'road.highway',
-		// 		elementType: 'geometry.stroke',
-		// 		stylers: [{ color: '#e9bc62' }]
-		// 	},
-		// 	{
-		// 		featureType: 'road.highway.controlled_access',
-		// 		elementType: 'geometry',
-		// 		stylers: [{ color: '#e98d58' }]
-		// 	},
-		// 	{
-		// 		featureType: 'road.highway.controlled_access',
-		// 		elementType: 'geometry.stroke',
-		// 		stylers: [{ color: '#db8555' }]
-		// 	},
-		// 	{
-		// 		featureType: 'road.local',
-		// 		elementType: 'labels.text.fill',
-		// 		stylers: [{ color: '#806b63' }]
-		// 	},
-		// 	{
-		// 		featureType: 'transit',
-		// 		elementType: 'all',
-		// 		stylers: [{ visibility: 'off' }]
-		// 	},
-		// 	{
-		// 		featureType: 'water',
-		// 		elementType: 'geometry.fill',
-		// 		stylers: [{ color: '#b9d3c2' }]
-		// 	},
-		// 	{
-		// 		featureType: 'water',
-		// 		elementType: 'labels.text.fill',
-		// 		stylers: [{ color: '#92998d' }]
-		// 	}
-		// ];
 
 		const icons = {
 			'museum': Museum,
@@ -166,16 +89,6 @@ export class Map extends Component {
 					marker.setIcon(icons[place.category]);
 				} 
 
-				// if ({icon}) {
-				// 	marker.setIcon({icon});
-				// }
-
-				//checking category, to get the right icon
-				// if (place.category === '') {
-				// 	place.iconImage = '';
-				// 	marker.setIcon(place.iconImage);
-				// }
-
 				//ADD INFOWINDOW
 				if (place.content) {
 					const infoWindow = new google.maps.InfoWindow({
@@ -191,7 +104,6 @@ export class Map extends Component {
 			})
 		}
 	}
-
 
 	render() {
 		//NEEDED in order for map to display 
