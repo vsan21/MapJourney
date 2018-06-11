@@ -5,7 +5,7 @@
 /* to center the form in the middle */
 .cover {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     background-image: url('../images/login.jpg');
     background-position: center center;
     background-size: cover;
@@ -52,11 +52,15 @@
     border-radius: 5px;
     /* taking off the border shadow from button */
     border-right: 0;
+    /* width: 6vw;
+    height: 10.5vh;
+    font-size: 1.3vw; */
 }
 
 .welcome {
     margin-left: 7%;
     z-index: 10;
+    font-size: 1vw;
 }
 
 .welcome > h4 {

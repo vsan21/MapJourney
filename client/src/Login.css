@@ -10,6 +10,7 @@
 /*Video*/
 .background-video {
     height: 100%;
+    width: 100vw;
     object-fit: cover;
     position: absolute;
     top: 0;
@@ -27,12 +28,12 @@
     position: relative;
 }
 
-.login-intro > h3 {
-    font-size: 2vw;
+.login-container > h3 {
+    font-size: 2.3vw;
 }
 
-.login-intro > p {
-    font-size: 1vw;
+.login-container > p {
+    font-size: 1.3vw;
 }
 
 .login-buttons {
@@ -40,6 +41,7 @@
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 1.5rem;
+    margin-top: -0.5rem;
 }
 
 .btn-margin {

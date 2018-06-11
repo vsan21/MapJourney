@@ -70,7 +70,7 @@ export class ListPlaces extends Component {
 	}
 
 	render() {
-		
+
 		const place = this.props.place;
 		const index = this.props.index;
 
@@ -91,7 +91,7 @@ export class ListPlaces extends Component {
 		let stars;
 		for(let key in starMap) {
 			if(key === starsNum) {
-				stars = <Image src={starMap[key]} alt={`${place.stars} stars`} responsive />;	
+				stars = <Image src={starMap[key]} alt={`${place.stars} stars`} id='stars' responsive />;	
 			}
 		}
 
@@ -108,7 +108,7 @@ export class ListPlaces extends Component {
 							<p>{place.address}</p>
 							<p>
 								{stars}
-								<a href={place.yelpLink}><Image src={logo} alt={logo} responsive /></a>
+								<a href={place.yelpLink}><Image src={logo} alt={logo} id='logo' responsive /></a>
 							</p>
 							<p><i>{place.reviewCount} Reviews</i></p>
 						</div>

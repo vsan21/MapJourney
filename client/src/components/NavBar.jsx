@@ -54,12 +54,15 @@ export class NavBar extends Component {
 					res.data.forEach(place => {
 						places.push({
 							coordinate: { lat: place.latitude, lng: place.longitude },
-							// iconImage: '',
 							category: place.map_category,
 							content: `
-							<img src=${place.image} alt=${place.place_name} width='100px' height='100px'/>
-							<h1>${place.place_name}</h1>
-							<p>Address: ${place.address}</p>
+							<div id='content'>
+								<h2>${place.place_name}</h2>
+								<p><strong>Address</strong>: ${place.address}</p>
+								<div id='place_image'>
+									<img src=${place.image} alt=${place.place_name} width='150px' height='150px'/>
+								</div>
+							</div>
 						`
 						})
 					})

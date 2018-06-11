@@ -1,0 +1,19 @@
+#content {
+    /* border: 3px solid red; */
+    display: flex;
+    flex-direction: column;
+}
+
+#place_image {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+#content h2 {
+    margin-top: 1%;
+}
+
+#content p {
+    font-size: 2rem;
+}

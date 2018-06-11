@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import './Search.css';
 import { NavBar } from './NavBar';
-// import video from '../images/background-video.mp4';
+import { Button } from 'react-bootstrap';
 
 export class Search extends Component {
 	state = {
@@ -111,12 +111,9 @@ export class Search extends Component {
 						}
 					</div>
 					<form onSubmit={this.handleSubmit} autoComplete='off' className='flex-form'>
-
 						<input type='text' name='term' placeholder='Ex. Hikes, Museums...' />
-
 						<input type='text' name='location' placeholder='Ex. San Francisco, CA' />
-
-						<button type='submit'>Search</button>
+						<Button type='submit'>Search</Button>
 					</form>
 
 					{/* redirecting the results to a new page */}
