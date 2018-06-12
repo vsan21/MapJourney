@@ -46,11 +46,11 @@ td {
 
 
 /* Modal styling */
-h4 {
+#modal-body > h4 {
 	text-align: center;
 }
 
-form {
+#modal-body > form {
 	margin-left: 8.5rem;	
 	margin-top: 2.1rem;
 	margin-bottom: 1rem;

@@ -58,13 +58,15 @@
 }
 
 .welcome {
-    margin-left: 7%;
+    margin-left: 3%;
+    margin-bottom: 0.5%;
+    text-align: center;
     z-index: 10;
     font-size: 1vw;
 }
 
 .welcome > h4 {
-    font: bold 170% Consolas, Monaco, monospace;
+    font: bold 160% Consolas, Monaco, monospace;
     color: white;
     text-align: center;    
     width: 16.5em; 
