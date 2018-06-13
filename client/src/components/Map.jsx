@@ -17,7 +17,11 @@ export class Map extends Component {
 		panelWidth: '0vw',
 		panelDisplay: 'none',
 		map: '',
-		geocoder: ''
+		geocoder: '',
+		// directionsDisplay: '',
+		// directionsService: '',
+		start: '',
+		segmentOrigin: '',
 	}
 
 	// when component mounts, invoke loadMap function
@@ -87,9 +91,14 @@ export class Map extends Component {
             centerControlDiv.index = 1;
             this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
-            const directionsDisplay = new google.maps.DirectionsRenderer;
-            const directionsService = new google.maps.DirectionsService;
-            directionsDisplay.setMap(this.map);
+            const directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+			const directionsService = new google.maps.DirectionsService();
+			
+			directionsDisplay.setMap(this.map);
+			
+			//make directionsDisplay & directionsService accessible everywhere
+			// this.setState({directionsDisplay: directionsDisplay, directionsService: directionsService});
+
 
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
@@ -108,17 +117,111 @@ export class Map extends Component {
 				//ADD INFOWINDOW
 				if (place.content) {
 					const infoWindow = new google.maps.InfoWindow({
-						content: place.content
+						content: `
+						<div id='content'>
+							<h2>${place.place_name}</h2>
+							<p><strong>Address</strong>: ${place.address}</p>
+							<div id='place_image'>
+								<img src=${place.image} alt=${place.place_name} />
+							</div>
+							<hr />
+							<div id='infowindow-controls'>
+								<div id='homebtn'>
+									<Button onClick={directionsToHome}>Go Home</Button> 
+								</div>
+								<div id="travel-mode">
+									<div id='mode-description'>
+										<p><strong>Directions to here by</strong>: </p>
+									</div>
+									<div id='mode-type'>
+										<select id="mode">
+											<option disabled selected value> Options</option>
+											<option value="DRIVING">Driving</option>
+											<option value="WALKING">Walking</option>
+											<option value="BICYCLING">Bicycling</option>
+											<option value="TRANSIT">Transit</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						`
 					})
 
 					//when user clicks on any of the markers, open infowindow
 					//2 parameters: the map where it will open, and the marker
 					marker.addListener('click', () => {
 						infoWindow.open(this.map, marker);
+						console.log(`marker: ${marker.position}`)
+
+						this.setState({
+							segmentOrigin: {
+								lat: marker.position.lat(),
+								lng: marker.position.lng()
+							}
+						})
 					})
+
+					//allow us to call a js function from the infowindow
+					google.maps.event.addListener(infoWindow, 'domready', () => {
+						//grabs the selected travel mode
+						const selected = document.getElementById('mode');
+						selected.onchange = () => {
+							const selectedMode = selected.options[selected.selectedIndex].value;
+							// console.log(selectedMode);
+
+							this.calculateAndDisplayRoute(directionsService, directionsDisplay, selectedMode, marker);
+						}
+					});
+
 				}
 			})
 		}
+	}
+
+	calculateAndDisplayRoute = (directionsService, directionsDisplay, mode, marker) => {
+		// const travelMode = {
+		// 	'DRIVING': 'orange',
+		// 	'WALKING': 'blue',
+		// 	'BICYCLING': 'green'
+		// }
+
+		// if(mode in travelMode) {
+		// 	directionsDisplay({
+		// 		polylineOptions: {
+		// 			strokeColor: travelMode[mode]
+		// 		}
+		// 	})
+		// }
+
+		// this.setState({
+		// 	segmentOrigin: {
+		// 		lat: marker.position.lat(),
+		// 		lng: marker.position.lng()
+		// 	}
+		// })
+
+		const previousDestinationToOrigin = {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng};
+		
+		directionsService.route({
+			origin: this.state.start,
+			destination: {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng},
+			travelMode: this.props.google.maps.TravelMode[mode]
+		}, (response, status) => {
+			if(status === 'OK') {
+				directionsDisplay.setDirections(response);
+
+				this.setState({start: JSON.stringify(previousDestinationToOrigin)});
+				// if(this.props.google.maps.event.addListener(marker, 'click', () => {
+				// 	this.calculateAndDisplayRoute(directionsService, directionsDisplay, mode)
+				// })) {
+				// 	console.log('this worked!')
+				// }
+				
+			} else {
+				window.alert("Please click the 'Get Directions' button first to enter your hotel address");
+			}
+		})
 	}
 
 	//opens the right panel (for directions)
@@ -130,31 +233,46 @@ export class Map extends Component {
     geocodeAddress = (e) => {
         e.preventDefault();
         const address = e.target.address.value;
-        console.log(address);
 
         this.state.geocoder.geocode( {'address': address}, (results, status) => {
             if (status === 'OK') {
                 const hotelCoords = results[0].geometry.location;
-                console.log(hotelCoords);
-                console.log(results[0].formatted_address);
+                // console.log(hotelCoords);
+                // console.log(results[0].formatted_address);
 
                 this.state.map.setCenter(hotelCoords);
                 const marker = new this.props.google.maps.Marker({
                     position: hotelCoords,
                     map: this.state.map
-                })
+				})
+				console.log(`ignore: ${marker}`);
+				
+				this.setState({
+					start: results[0].formatted_address
+				});
+
             } else {
                 alert('Geocode was not successful for the following reasons: ' + status);
             }
-        })
-    }
+		})
+	}
+	
+	// when user clicks "Go Home", will route directions from their last location back to hotel
+	// directionsToHome = () => {
+	// 	this.state.directionsService.route({
+	// 		origin: ,
+	// 		destination: this.state.start,
+	// 		travelMode: 'DRIVING'
+	// 	}, (response, status) => {
+	// 		if (status === 'OK') {
+	// 			this.state.directionsDisplay.setDirections(response);
+	// 		} else {
+	// 			window.alert('Directions request failed due to ' + status);
+	// 		}
+	// 	})
+	// }
 
 	render() {
-		//NEEDED in order for map to display 
-		// const style = {
-		// 	width: '100vw',
-		// 	height: '100vh'
-		// }
 
 		const mapStyle = {
 			width: this.state.mapWidth,
@@ -167,10 +285,8 @@ export class Map extends Component {
 			border: '2px solid orange',
 			display: this.state.panelDisplay
 		}
-		
-		return (	
-			
 
+		return (	
 			<div>
 				{/* attaching the map styles */}
 				<div className="app">
@@ -192,6 +308,9 @@ export class Map extends Component {
 							<input type="text" name="address" />
 							<button id='hotelbtn'>Submit</button>
 						</form>
+						<div className="start"><strong>Start Location</strong>: {this.state.start}</div>
+						<div className="waypoints"></div>
+						<div className="end"><strong>End Location</strong>: {this.state.start}</div>
 					</div>
 
 				</div>

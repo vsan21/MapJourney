@@ -53,17 +53,12 @@ export class NavBar extends Component {
 					let places = [];
 					res.data.forEach(place => {
 						places.push({
+							place_name: place.place_name,
+							address: place.address,
+							image: place.image,
 							coordinate: { lat: place.latitude, lng: place.longitude },
 							category: place.map_category,
-							content: `
-							<div id='content'>
-								<h2>${place.place_name}</h2>
-								<p><strong>Address</strong>: ${place.address}</p>
-								<div id='place_image'>
-									<img src=${place.image} alt=${place.place_name} width='150px' height='150px'/>
-								</div>
-							</div>
-						`
+							content: 'content'
 						})
 					})
 					this.setState({ places: places })
