@@ -22,6 +22,8 @@ export class Map extends Component {
 		// directionsService: '',
 		start: '',
 		segmentOrigin: '',
+		end: '',
+		routes: []
 	}
 
 	// when component mounts, invoke loadMap function
@@ -91,8 +93,8 @@ export class Map extends Component {
             centerControlDiv.index = 1;
             this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
-            const directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
-			const directionsService = new google.maps.DirectionsService();
+            let directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+			let directionsService = new google.maps.DirectionsService();
 			
 			directionsDisplay.setMap(this.map);
 			
@@ -126,8 +128,8 @@ export class Map extends Component {
 							</div>
 							<hr />
 							<div id='infowindow-controls'>
-								<div id='homebtn'>
-									<Button onClick={directionsToHome}>Go Home</Button> 
+								<div id='btn-container'>
+									<Button id='homebtn'>Go Home</Button> 
 								</div>
 								<div id="travel-mode">
 									<div id='mode-description'>
@@ -162,66 +164,29 @@ export class Map extends Component {
 						})
 					})
 
-					//allow us to call a js function from the infowindow
+					//allows me to call a js function from the infowindow --> travel mode selection 
 					google.maps.event.addListener(infoWindow, 'domready', () => {
 						//grabs the selected travel mode
 						const selected = document.getElementById('mode');
 						selected.onchange = () => {
 							const selectedMode = selected.options[selected.selectedIndex].value;
-							// console.log(selectedMode);
 
-							this.calculateAndDisplayRoute(directionsService, directionsDisplay, selectedMode, marker);
+							this.calculateAndDisplayRoute(directionsService, directionsDisplay, selectedMode);
+						}
+					});
+
+					//JS functionality for "Go Home" button in infowindow
+					google.maps.event.addListener(infoWindow, 'domready', () => {
+						const home = document.getElementById('homebtn');
+
+						home.onclick = () => {
+							this.directionsToHome(directionsService, directionsDisplay);
 						}
 					});
 
 				}
 			})
 		}
-	}
-
-	calculateAndDisplayRoute = (directionsService, directionsDisplay, mode, marker) => {
-		// const travelMode = {
-		// 	'DRIVING': 'orange',
-		// 	'WALKING': 'blue',
-		// 	'BICYCLING': 'green'
-		// }
-
-		// if(mode in travelMode) {
-		// 	directionsDisplay({
-		// 		polylineOptions: {
-		// 			strokeColor: travelMode[mode]
-		// 		}
-		// 	})
-		// }
-
-		// this.setState({
-		// 	segmentOrigin: {
-		// 		lat: marker.position.lat(),
-		// 		lng: marker.position.lng()
-		// 	}
-		// })
-
-		const previousDestinationToOrigin = {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng};
-		
-		directionsService.route({
-			origin: this.state.start,
-			destination: {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng},
-			travelMode: this.props.google.maps.TravelMode[mode]
-		}, (response, status) => {
-			if(status === 'OK') {
-				directionsDisplay.setDirections(response);
-
-				this.setState({start: JSON.stringify(previousDestinationToOrigin)});
-				// if(this.props.google.maps.event.addListener(marker, 'click', () => {
-				// 	this.calculateAndDisplayRoute(directionsService, directionsDisplay, mode)
-				// })) {
-				// 	console.log('this worked!')
-				// }
-				
-			} else {
-				window.alert("Please click the 'Get Directions' button first to enter your hotel address");
-			}
-		})
 	}
 
 	//opens the right panel (for directions)
@@ -248,7 +213,8 @@ export class Map extends Component {
 				console.log(`ignore: ${marker}`);
 				
 				this.setState({
-					start: results[0].formatted_address
+					start: results[0].formatted_address,
+					end: results[0].formatted_address
 				});
 
             } else {
@@ -256,21 +222,74 @@ export class Map extends Component {
             }
 		})
 	}
+
+	calculateAndDisplayRoute = (directionsService, directionsDisplay, mode) => {
+		// const travelMode = {
+		// 	'DRIVING': 'orange',
+		// 	'WALKING': 'blue',
+		// 	'BICYCLING': 'green'
+		// }
+
+		// if(mode in travelMode) {
+		// 	directionsDisplay({
+		// 		polylineOptions: {
+		// 			strokeColor: travelMode[mode]
+		// 		}
+		// 	})
+		// }
+
+		// this.setState({
+		// 	segmentOrigin: {
+		// 		lat: marker.position.lat(),
+		// 		lng: marker.position.lng()
+		// 	}
+		// })
+
+		const previousDestinationToOrigin = {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng};
+		
+		// let routes = [];
+		// routes.push()
+		// console.log(this.state.start);
+
+		// this.setState({routes: routes})
+
+		directionsService.route({
+			origin: this.state.start,
+			destination: {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng},
+			travelMode: this.props.google.maps.TravelMode[mode]
+		}, (response, status) => {
+			if(status === 'OK') {
+				directionsDisplay.setDirections(response);
+
+				this.setState({start: previousDestinationToOrigin});
+				// let dirDisplay = new google.maps.DirectionsRenderer({
+				// 	map: this.state.map,
+				// 	suppressMarkers: true
+				// })
+				// dirDisplay.setDirections(response)
+				
+			} else {
+				// window.alert("Directions failed due to " + status);
+				console.log(response);
+				console.log(status);
+			}
+		})
+	}
 	
 	// when user clicks "Go Home", will route directions from their last location back to hotel
-	// directionsToHome = () => {
-	// 	this.state.directionsService.route({
-	// 		origin: ,
-	// 		destination: this.state.start,
-	// 		travelMode: 'DRIVING'
-	// 	}, (response, status) => {
-	// 		if (status === 'OK') {
-	// 			this.state.directionsDisplay.setDirections(response);
-	// 		} else {
-	// 			window.alert('Directions request failed due to ' + status);
-	// 		}
-	// 	})
-	// }
+	directionsToHome = (directionsService, directionsDisplay) => {
+		directionsService.route({
+			origin: this.state.start,
+			destination: this.state.end,
+			travelMode: 'DRIVING'
+		}, (response, status) => {
+			if (status === 'OK') {
+				directionsDisplay.setDirections(response);
+			} else {
+				window.alert('Directions request failed due to ' + status);
+			}
+		})
+	}
 
 	render() {
 
@@ -308,9 +327,9 @@ export class Map extends Component {
 							<input type="text" name="address" />
 							<button id='hotelbtn'>Submit</button>
 						</form>
-						<div className="start"><strong>Start Location</strong>: {this.state.start}</div>
+						<div className="start"><strong>Start Location</strong>: {JSON.stringify(this.state.start)}</div>
 						<div className="waypoints"></div>
-						<div className="end"><strong>End Location</strong>: {this.state.start}</div>
+						<div className="end"><strong>End Location</strong>: {JSON.stringify(this.state.start)}</div>
 					</div>
 
 				</div>

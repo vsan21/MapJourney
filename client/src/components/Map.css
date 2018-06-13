@@ -86,12 +86,12 @@
     display: flex;
 }
 
-#homebtn {
+#btn-container {
     display: flex;
     align-items: center;
 }
 
-#homebtn > button {
+#btn-container > button {
     background:#FF5A5F;
 	border-top: 1px solid #FF5A5F;
 	border-bottom: 1px solid #FF5A5F;
