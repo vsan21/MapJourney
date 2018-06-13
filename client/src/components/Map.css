@@ -10,6 +10,7 @@
 
 .address-form {
     margin-top: 5%;
+    margin-bottom: 5%;
     text-align: center;
     width: 100%;
 }
@@ -18,10 +19,20 @@
     margin-right: 2%;
 }
 
+#right-panel {
+    display: flex;
+    flex-direction: column;
+}
+
 #hotelbtn {
     background:#FF5A5F;
     border-radius: 5px;
 	color:white;
+}
+
+.start, .end {
+    border: 3px solid green;
+    margin-left: 5%;
 }
 
 /* 'Get Directions' button */
@@ -44,21 +55,71 @@
 
 /* Infowindow styling */
 #content {
-    /* border: 3px solid red; */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+#content h2 {
+    margin-top: 1%;
+    font-size: 2vw;
+}
+
+#content p {
+    font-size: 1.2vw;
 }
 
 #place_image {
     display: flex;
     justify-content: center;
     margin-top: 2%;
+    margin-bottom: -4%;
 }
 
-#content h2 {
-    margin-top: 1%;
+#place_image > img {
+    width: 15vh;
+	height: 15vh;
+    margin: 0 auto;
 }
 
-#content p {
-    font-size: 2rem;
+#infowindow-controls {
+    display: flex;
+}
+
+#homebtn {
+    display: flex;
+    align-items: center;
+}
+
+#homebtn > button {
+    background:#FF5A5F;
+	border-top: 1px solid #FF5A5F;
+	border-bottom: 1px solid #FF5A5F;
+    color:white;
+    border-radius: 5px;
+    width: 4.5vw;
+    height: 4.9vh;
+    font-size: 0.9vw;
+}
+
+#travel-mode {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#mode-description {
+    margin-right: 2%;
+    display: flex;
+}
+
+#mode-description > p {
+    height: 100%;
+    font-size: 1.2vw;
+    display: flex;
+    align-items: center;
+}
+
+#mode-type {
+    display: flex;
 }
