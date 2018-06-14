@@ -90,10 +90,11 @@ Whether it be road trips, domestic, international, or even staycations in your o
 - [x] Map markers have infowindow 
 - [x] Auth0: login, signup, logout, and user profile 
 - [x] Custom map category icons 
-- [ ] Route travel between pins based on multiple modes of transportation
+- [x] Route travel between pins based on multiple modes of transportation
+- [ ] Change the color of the different travel routes 
+- [ ] Display directions summary on side panel (itinerary-like list) 
 
 ### Later features: 
-- Create side panel display next to maps (itinerary-like list) 
 - Save multiple maps of different cities/countries 
 - Allow user to go into "Storymode" 
     - Mark a place as "visited"
