@@ -30,9 +30,27 @@
 	color:white;
 }
 
-.start, .end {
-    border: 3px solid green;
-    margin-left: 5%;
+.legend { 
+    border: 2px solid black;
+    text-align: center;
+    padding-top: 3%;
+    margin-top: 10%;
+}
+
+#driving {
+    color: blue;
+}
+
+#transit {
+    color: orange;
+}
+
+#walking {
+    color: purple;
+}
+
+#bicycling {
+    color: #9ACD32;
 }
 
 /* 'Get Directions' button */

@@ -151,7 +151,8 @@ export class Map extends Component {
 					})
 
 					//when user clicks on any of the markers, open infowindow
-					//2 parameters: the map where it will open, and the marker
+						//2 parameters: the map where it will open, and the marker
+						//also when they click, it grabs that marker's coordinates (updates segmentOrigin)
 					marker.addListener('click', () => {
 						infoWindow.open(this.map, marker);
 						console.log(`marker: ${marker.position}`)
@@ -224,54 +225,45 @@ export class Map extends Component {
 	}
 
 	calculateAndDisplayRoute = (directionsService, directionsDisplay, mode) => {
-		// const travelMode = {
-		// 	'DRIVING': 'orange',
-		// 	'WALKING': 'blue',
-		// 	'BICYCLING': 'green'
-		// }
+		const travelMode = {
+			'TRANSIT': 'orange',
+			'WALKING': 'purple',
+			'BICYCLING': '#9ACD32'
+		}
 
-		// if(mode in travelMode) {
-		// 	directionsDisplay({
-		// 		polylineOptions: {
-		// 			strokeColor: travelMode[mode]
-		// 		}
-		// 	})
-		// }
+		let pathColor = '';
+		if(mode in travelMode) {
+			pathColor = travelMode[mode];
+		}
 
-		// this.setState({
-		// 	segmentOrigin: {
-		// 		lat: marker.position.lat(),
-		// 		lng: marker.position.lng()
-		// 	}
-		// })
-
+		//grabbing the current destination's coordinates --> to be set as the new origin for next route
 		const previousDestinationToOrigin = {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng};
-		
-		// let routes = [];
-		// routes.push({origin: this.state.start, destination: {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng}, mode: this.props.google.maps.TravelMode[mode]});
-		// console.log(routes);
-
-		// this.setState({routes: routes})
 
 		directionsService.route({
 			origin: this.state.start,
 			destination: {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng},
 			travelMode: this.props.google.maps.TravelMode[mode]
 		}, (response, status) => {
+
 			if(status === 'OK') {
 				directionsDisplay.setDirections(response);
+
 
 				this.setState({start: previousDestinationToOrigin});
 				let dirDisplay = new this.props.google.maps.DirectionsRenderer({
 					map: this.state.map,
-					suppressMarkers: true
+					suppressMarkers: true,
+					suppressBicyclingLayer: true,
+					polylineOptions: {
+						strokeColor: pathColor
+					}
 				})
 				dirDisplay.setDirections(response)
 				
 			} else {
-				// window.alert("Directions failed due to " + status);
-				console.log(response);
-				console.log(status);
+				window.alert("Directions failed due to " + status);
+				// console.log(response);
+				// console.log(status);
 			}
 		})
 	}
@@ -327,11 +319,14 @@ export class Map extends Component {
 							<input type="text" name="address" />
 							<button id='hotelbtn'>Submit</button>
 						</form>
-						<div className="start"><strong>Start Location</strong>: {JSON.stringify(this.state.start)}</div>
-						<div className="waypoints"></div>
-						<div className="end"><strong>End Location</strong>: {JSON.stringify(this.state.start)}</div>
+						<div className='legend'>
+							<p><strong>DRIVING</strong>: <span id='driving'>blue</span></p>
+							<p><strong>TRANSIT</strong>: <span id='transit'>orange</span></p>
+							<p><strong>WALKING</strong>: <span id='walking'>purple</span></p>
+							<p><strong>BICYCLING</strong>: <span id='bicycling'>green</span></p>
+						</div>
 					</div>
-
+					
 				</div>
 			</div>
 		);
