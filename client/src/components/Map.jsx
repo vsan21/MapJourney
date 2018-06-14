@@ -248,8 +248,8 @@ export class Map extends Component {
 		const previousDestinationToOrigin = {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng};
 		
 		// let routes = [];
-		// routes.push()
-		// console.log(this.state.start);
+		// routes.push({origin: this.state.start, destination: {lat: this.state.segmentOrigin.lat, lng: this.state.segmentOrigin.lng}, mode: this.props.google.maps.TravelMode[mode]});
+		// console.log(routes);
 
 		// this.setState({routes: routes})
 
@@ -262,11 +262,11 @@ export class Map extends Component {
 				directionsDisplay.setDirections(response);
 
 				this.setState({start: previousDestinationToOrigin});
-				// let dirDisplay = new google.maps.DirectionsRenderer({
-				// 	map: this.state.map,
-				// 	suppressMarkers: true
-				// })
-				// dirDisplay.setDirections(response)
+				let dirDisplay = new this.props.google.maps.DirectionsRenderer({
+					map: this.state.map,
+					suppressMarkers: true
+				})
+				dirDisplay.setDirections(response)
 				
 			} else {
 				// window.alert("Directions failed due to " + status);
