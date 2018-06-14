@@ -91,7 +91,7 @@ Whether it be road trips, domestic, international, or even staycations in your o
 - [x] Auth0: login, signup, logout, and user profile 
 - [x] Custom map category icons 
 - [x] Route travel between pins based on multiple modes of transportation
-- [ ] Change the color of the different travel routes 
+- [x] Change the color of the different travel routes 
 - [ ] Display directions summary on side panel (itinerary-like list) 
 
 ### Later features: 
