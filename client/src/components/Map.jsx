@@ -93,7 +93,11 @@ export class Map extends Component {
             centerControlDiv.index = 1;
             this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
-            let directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+            let directionsDisplay = new google.maps.DirectionsRenderer({
+				suppressMarkers: true, 
+				suppressBicyclingLayer: true,
+				preserveViewport: true
+			});
 			let directionsService = new google.maps.DirectionsService();
 			
 			directionsDisplay.setMap(this.map);
@@ -254,6 +258,7 @@ export class Map extends Component {
 					map: this.state.map,
 					suppressMarkers: true,
 					suppressBicyclingLayer: true,
+					preserveViewport: true,
 					polylineOptions: {
 						strokeColor: pathColor
 					}
