@@ -95,6 +95,8 @@ Whether it be road trips, domestic, international, or even staycations in your o
 - [ ] Display directions summary on side panel (itinerary-like list) 
 
 ### Later features: 
+- Save user's routes into db 
+- Allow user to delete pins & modify routes
 - Save multiple maps of different cities/countries 
 - Allow user to go into "Storymode" 
     - Mark a place as "visited"
