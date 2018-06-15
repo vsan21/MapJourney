@@ -1,7 +1,9 @@
 # MapJourney
 Whether it be road trips, domestic, international, or even staycations in your own city, let MapJourney help you map out and route any future travels with ease, seemingly taking away the frustration out of travel planning and allowing you to enjoy your vacations once again. 
 
-**_Tech Stack_**: React, Express, SQL, Node
+**_Tech Stack_**: MySQL, Express, React, Node 
+
+**_APIs_**: Yelp, Google Maps, Google Directions, Google Geocode, Auth0
 
 **_Project Prep Doc_**: https://docs.google.com/document/d/1ryxxTT-nnkaT-_sseAQJy4BhmTLMEmTBLJt4FqV0zG0/edit?usp=sharing
 
