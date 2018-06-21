@@ -1,14 +1,15 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
-require('dotenv').config();
 // import { AUTH_CONFIG } from './auth0-variables';
+
+console.log(process.env.REACT_APP_AUTH0_CLIENT_ID);
 
 export default class Auth {
 	auth0 = new auth0.WebAuth({
-		domain: process.env.AUTH0_DOMAIN,
-		clientID: process.env.AUTH0_CLIENT_ID,
-		redirectUri: process.env.AUTH0_CALLBACK_URL,
-		audience: `https://${process.env.AUTH0_DOMAIN}/userinfo`,
+		domain: process.env.REACT_APP_AUTH0_DOMAIN,
+		clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+		redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+		audience: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`,
 		responseType: 'token id_token',
 		scope: 'openid profile email'
 	});
