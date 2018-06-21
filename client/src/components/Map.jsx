@@ -207,8 +207,6 @@ export class Map extends Component {
         this.state.geocoder.geocode( {'address': address}, (results, status) => {
             if (status === 'OK') {
                 const hotelCoords = results[0].geometry.location;
-                // console.log(hotelCoords);
-                // console.log(results[0].formatted_address);
 
                 this.state.map.setCenter(hotelCoords);
                 const marker = new this.props.google.maps.Marker({
@@ -230,9 +228,9 @@ export class Map extends Component {
 
 	calculateAndDisplayRoute = (directionsService, directionsDisplay, mode) => {
 		const travelMode = {
-			'TRANSIT': 'orange',
-			'WALKING': 'purple',
-			'BICYCLING': '#9ACD32'
+			'TRANSIT': '#ffb84d',
+			'WALKING': '#d633ff',
+			'BICYCLING': '#009900'
 		}
 
 		let pathColor = '';
@@ -260,15 +258,14 @@ export class Map extends Component {
 					suppressBicyclingLayer: true,
 					preserveViewport: true,
 					polylineOptions: {
-						strokeColor: pathColor
+						strokeColor: pathColor,
+						strokeWeight: 6
 					}
 				})
 				dirDisplay.setDirections(response)
 				
 			} else {
 				window.alert("Directions failed due to " + status);
-				// console.log(response);
-				// console.log(status);
 			}
 		})
 	}

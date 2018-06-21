@@ -6,10 +6,11 @@ const MYSQL_KEY = process.env.MYSQL_KEY;
 
 // create MySQL connection
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: `${MYSQL_KEY}`,
-  database: 'mapjourneytest'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE
 })
 
 connection.connect((err) => {
