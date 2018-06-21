@@ -1,1 +1,1 @@
-web: yarn start && cd database && chmod + rwx ./setup.sh && ./setup.sh
+web: yarn start
