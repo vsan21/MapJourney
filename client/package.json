@@ -20,7 +20,7 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:8000/",
   "devDependencies": {
     "jest": "^23.1.0"
   }

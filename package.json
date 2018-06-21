@@ -10,7 +10,9 @@
   "scripts": {
     "start": "concurrently \"yarn server\" \"yarn client\"",
     "client": "cd client && yarn start",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "build": "concurrently \"yarn build\" \"cd client && yarn build\"",
+    "start:prod": "yarn start:prod"
   },
   "dependencies": {
     "axios": "^0.18.0",
