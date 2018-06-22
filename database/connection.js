@@ -15,16 +15,10 @@ if(process.env.PORT === undefined) {
     database: 'mapjourneytest'
   }
 } else {
-    dbConfig = {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USERNAME,
-      port: process.env.DB_PORT,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE
-  }
+    dbConfig = process.env.CLEARDB_DATABASE_URL;
 }
 
-const connection = mysql.createConnection(CLEARDB_DATABASE_URL)
+const connection = mysql.createConnection(dbConfig)
 
 connection.connect((err) => {
   if(err) throw err;
