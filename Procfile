@@ -1,1 +1,2 @@
-web: yarn start:prod
+web: $WEB
+web: $WEB1
