@@ -18,6 +18,9 @@ const YELP_API_KEY = process.env.YELP_API_KEY;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//serves the build folder
+app.use(express.static("client/build"));
+
 //get city coordinates to create map
 app.get('/citycoords', (req, res) => {
 	let id = req.query.id;
