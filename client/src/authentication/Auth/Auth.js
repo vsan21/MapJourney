@@ -20,9 +20,6 @@ if(process.env.PORT === undefined) {
 	audience = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 }
 
-console.log(process.env.PORT)
-console.log(domain);
-
 export default class Auth {
 	auth0 = new auth0.WebAuth({
 		domain: domain,
