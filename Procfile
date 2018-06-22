@@ -1,2 +1,2 @@
 web: $WEB
-web: $WEB1
+web1: $WEB1
