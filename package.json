@@ -9,7 +9,7 @@
     "yarn": "1.7.0"
   },
   "scripts": {
-    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "dev": "concurrently \"yarn server\" \"yarn client\" && process.env.NODE_ENV='dev'",
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "start": "node server.js",
