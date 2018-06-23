@@ -13,7 +13,7 @@
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && yarn && rm -rf build/ && yarn build && process.env.NODE_ENV='prod'"
+    "heroku-postbuild": "cd client && yarn && rm -rf build/ && yarn build"
   },
   "dependencies": {
     "axios": "^0.18.0",

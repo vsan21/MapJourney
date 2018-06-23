@@ -9,7 +9,7 @@ const MYSQL_KEY = process.env.MYSQL_KEY;
 // create MySQL connection
 let dbConfig;
 
-if(process.env.NODE_ENV = 'dev') {
+if(process.env.NODE_ENV === 'dev') {
   dbConfig = {
     host: 'localhost',
     user: 'root',
