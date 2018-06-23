@@ -9,10 +9,9 @@
     "yarn": "1.7.0"
   },
   "scripts": {
-    "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "client": "export NODE_ENV=development && cd client && yarn start && webpack --config ./node_modules/react-scripts/config/webpack.config.prod.js",
-    "server": "export NODE_ENV=development && nodemon server.js",
-    "start": "node server.js",
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "start": "export NODE_ENV=development && concurrently \"yarn server\" \"yarn client\"",
     "heroku-postbuild": "cd client && yarn && rm -rf build/ && yarn build"
   },
   "dependencies": {
