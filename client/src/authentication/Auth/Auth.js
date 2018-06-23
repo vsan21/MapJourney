@@ -14,10 +14,10 @@ if(process.env.NODE_ENV === 'development') {
 	redirectUri = process.env.REACT_APP_DEV_CALLBACK_URL;
 	audience = `https://${process.env.REACT_APP_DEV_DOMAIN}/userinfo`;
 } else {
-	domain = process.env.AUTH0_DOMAIN;
-	clientID = process.env.AUTH0_CLIENT_ID;
-	redirectUri = process.env.AUTH0_CALLBACK_URL;
-	audience = `https://${process.env.AUTH0_DOMAIN}/userinfo`;
+	domain = process.env.REACT_APP_AUTH0_DOMAIN;
+	clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
+	redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
+	audience = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 }
 
 console.log(`test: ${domain} ${clientID} ${redirectUri} ${audience}`);

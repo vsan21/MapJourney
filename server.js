@@ -8,7 +8,7 @@ const { body, validationResult } = require('express-validator/check');
 //Body Parser: allow us to grab information from POST (extract JSON out of it)
 const bodyParser = require('body-parser');
 console.log('i am here');
-console.log(`express: ${process.env.NODE_ENV}`);
+
 const port = process.env.PORT || 8000
 //make mysql connection available to query
 const connection = require('./database/connection.js');

@@ -18,6 +18,8 @@ if(process.env.NODE_ENV === 'development') {
     dbConfig = process.env.DATABASE_URL;
 }
 
+console.log(dbConfig);
+
 var connection = mysql.createConnection(dbConfig);
 
 connection.connect((err) => {
