@@ -1,6 +1,6 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
+// import { AUTH_CONFIG } from './auth0-variables';
 
 let domain;
 let clientID;
@@ -9,10 +9,10 @@ let audience;
 
 //be able to run locally or heroku local
 if(process.env.NODE_ENV === 'dev') {
-	domain = AUTH_CONFIG.domain;
-	clientID = AUTH_CONFIG.clientId;
-	redirectUri = AUTH_CONFIG.callbackUrl;
-	audience = `https://${AUTH_CONFIG.domain}/userinfo`;
+	domain = process.env.REACT_APP_AUTH0_DOMAIN;
+	clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
+	redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
+	audience = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 } else {
 	domain = process.env.REACT_APP_AUTH0_DOMAIN;
 	clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
