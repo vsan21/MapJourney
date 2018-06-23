@@ -9,10 +9,10 @@ let audience;
 
 //be able to run locally or heroku local
 if(process.env.NODE_ENV === 'dev') {
-	domain = process.env.REACT_APP_AUTH0_DOMAIN;
-	clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
-	redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
-	audience = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
+	domain = process.env.REACT_APP_DOMAIN;
+	clientID = process.env.REACT_APP_CLIENT_ID;
+	redirectUri = process.env.REACT_APP_CALLBACK_URL;
+	audience = `https://${process.env.REACT_APP_DOMAIN}/userinfo`;
 } else {
 	domain = process.env.REACT_APP_AUTH0_DOMAIN;
 	clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
