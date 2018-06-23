@@ -8,7 +8,7 @@ let redirectUri;
 let audience;
 
 //be able to run locally or heroku local
-if(process.env.PORT === undefined) {
+if(process.env.NODE_ENV === 'dev') {
 	domain = AUTH_CONFIG.domain;
 	clientID = AUTH_CONFIG.clientId;
 	redirectUri = AUTH_CONFIG.callbackUrl;
