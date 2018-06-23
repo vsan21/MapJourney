@@ -8,7 +8,7 @@ let redirectUri;
 let audience;
 
 //be able to run locally or heroku local
-if(process.env.NODE_ENV === 'dev') {
+if(process.env.NODE_ENV === 'development') {
 	domain = process.env.REACT_APP_DEV_DOMAIN;
 	clientID = process.env.REACT_APP_DEV_CLIENT_ID;
 	redirectUri = process.env.REACT_APP_DEV_CALLBACK_URL;
@@ -20,7 +20,7 @@ if(process.env.NODE_ENV === 'dev') {
 	audience = `https://${process.env.AUTH0_DOMAIN}/userinfo`;
 }
 
-console.log(`test: ${domain, clientID, redirectUri, audience}`);
+console.log(`test: ${domain} ${clientID} ${redirectUri} ${audience}`);
 
 export default class Auth {
 	auth0 = new auth0.WebAuth({

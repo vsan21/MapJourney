@@ -1,7 +1,5 @@
 const mysql = require('mysql');
-let denv = require('dotenv').config();
-
-// console.log(denv)
+require('dotenv').config();
 
 //KEYS
 const MYSQL_KEY = process.env.MYSQL_KEY;
@@ -9,7 +7,7 @@ const MYSQL_KEY = process.env.MYSQL_KEY;
 // create MySQL connection
 let dbConfig;
 
-if(process.env.NODE_ENV === 'dev') {
+if(process.env.NODE_ENV === 'development') {
   dbConfig = {
     host: 'localhost',
     user: 'root',
@@ -19,9 +17,6 @@ if(process.env.NODE_ENV === 'dev') {
 } else {
     dbConfig = process.env.DATABASE_URL;
 }
-
-// console.log(process.env)
-console.log(dbConfig);
 
 var connection = mysql.createConnection(dbConfig);
 
