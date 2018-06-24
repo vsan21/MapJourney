@@ -21,9 +21,6 @@ if(process.env.NODE_ENV === 'development') {
 	YELP_API_KEY = process.env.YELP_PROD_API_KEY;
 }
 
-console.log(process.env.NODE_ENV);
-console.log(YELP_API_KEY);
-
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
