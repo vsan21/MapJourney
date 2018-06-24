@@ -25,10 +25,14 @@ export class NavBar extends Component {
 	        }
 	    })
 	        .then(res => {
-				let city = [];
-				city.push({coordinates: res.data[0]})
+				if(res.data === '') {
+					alert('You currently have no maps.');
+				} else {
+					let city = [];
+					city.push({coordinates: res.data[0]})
 
-				this.setState({city: city});
+					this.setState({city: city});
+				}
 	        })
 	        .catch(err => {
 	            console.log(err);

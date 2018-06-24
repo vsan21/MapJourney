@@ -32,6 +32,7 @@ export class Map extends Component {
 	}
 
 	loadMap = () => {
+
 		//normal style
 		//takes off default poi & transit markers
 		const styles = [
