@@ -16,8 +16,8 @@ if(process.env.NODE_ENV === 'development') {
 } else {
 	domain = process.env.REACT_APP_PROD_DOMAIN;
 	clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
-	redirectUri = process.env.AUTH0_CALLBACK_URL;
-	audience = `https://${PROD_DOMAIN}/userinfo`;
+	redirectUri = process.env.REACT_APP_PROD_CALLBACK_URL;
+	audience = `https://${process.env.REACT_APP_PROD_DOMAIN}/userinfo`;
 }
 
 console.log(`auth: ${process.env.NODE_ENV}`);

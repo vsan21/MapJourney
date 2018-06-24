@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_ENV=production webpack -p --config ./node_modules/react-scripts/config/webpack.config.prod.js",
+    "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
