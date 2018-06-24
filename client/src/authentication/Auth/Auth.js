@@ -19,9 +19,6 @@ if(process.env.NODE_ENV === 'development') {
 	audience = `https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
 }
 
-console.log(`auth: ${process.env.NODE_ENV}`);
-console.log(`test: ${domain} ${clientID} ${redirectUri} ${audience}`);
-
 export default class Auth {
 	auth0 = new auth0.WebAuth({
 		domain: domain,
