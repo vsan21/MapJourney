@@ -12,6 +12,7 @@
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "start": "export NODE_ENV=development && concurrently \"yarn server\" \"yarn client\"",
+    "heroku-prebuild": "yarn",
     "heroku-postbuild": "cd client && yarn && rm -rf build/ && yarn build"
   },
   "dependencies": {
