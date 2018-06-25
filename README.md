@@ -95,6 +95,8 @@ Whether it be road trips, domestic, international, or even staycations in your o
 - [x] Route travel between pins based on multiple modes of transportation
 - [x] Change the color of the different travel routes 
 - [x] Display directions summary on side panel (itinerary-like list) 
+- [x] Deploy on Heroku
+- [ ] Fix Heroku H10 crash error
 
 ### Later features: 
 - Save user's routes into db 
