@@ -1,13 +1,33 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
+
+let domain;
+let clientID;
+let redirectUri;
+let audience;
+
+//be able to run locally or heroku local
+if(process.env.NODE_ENV === 'development') {
+	domain = process.env.REACT_APP_AUTH0_DEV_DOMAIN;
+	clientID = process.env.REACT_APP_AUTH0_DEV_CLIENT_ID;
+	redirectUri = process.env.REACT_APP_AUTH0_DEV_CALLBACK_URL;
+	audience = `https://${process.env.REACT_APP_AUTH0_DEV_DOMAIN}/userinfo`;
+} else {
+	domain = process.env.REACT_APP_AUTH0_PROD_DOMAIN;
+	clientID = process.env.REACT_APP_AUTH0_PROD_CLIENT_ID;
+	redirectUri = process.env.REACT_APP_AUTH0_PROD_CALLBACK_URL;
+	audience = `https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
+}
+
+console.log(process.env.NODE_ENV);
+console.log(`auth: ${domain} ${clientID} ${redirectUri} ${audience}`);
 
 export default class Auth {
 	auth0 = new auth0.WebAuth({
-		domain: AUTH_CONFIG.domain,
-		clientID: AUTH_CONFIG.clientId,
-		redirectUri: AUTH_CONFIG.callbackUrl,
-		audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+		domain: domain,
+		clientID: clientID,
+		redirectUri: redirectUri,
+		audience: audience,
 		responseType: 'token id_token',
 		scope: 'openid profile email'
 	});

@@ -1,9 +1,18 @@
 {
-  "main.css": "static/css/main.886f0b64.css",
-  "main.css.map": "static/css/main.886f0b64.css.map",
-  "main.js": "static/js/main.2ec3ce4d.js",
-  "main.js.map": "static/js/main.2ec3ce4d.js.map",
+  "main.css": "static/css/main.4f5113e7.css",
+  "main.css.map": "static/css/main.4f5113e7.css.map",
+  "main.js": "static/js/main.1a42d14f.js",
+  "main.js.map": "static/js/main.1a42d14f.js.map",
   "static/media/background-video.mp4": "static/media/background-video.d6caaad0.mp4",
+  "static/media/bar.svg": "static/media/bar.6ba6d71c.svg",
+  "static/media/cafe.svg": "static/media/cafe.bb132c1d.svg",
+  "static/media/dessert.svg": "static/media/dessert.73a0ec11.svg",
+  "static/media/garden.svg": "static/media/garden.6cd950b9.svg",
+  "static/media/hike.svg": "static/media/hike.4360b715.svg",
   "static/media/loading.svg": "static/media/loading.c5590569.svg",
-  "static/media/login.jpg": "static/media/login.a9ebd84f.jpg"
+  "static/media/login.jpg": "static/media/login.a9ebd84f.jpg",
+  "static/media/museum.svg": "static/media/museum.9ef54352.svg",
+  "static/media/photoop.svg": "static/media/photoop.c22651b4.svg",
+  "static/media/restaurant.svg": "static/media/restaurant.ee366b20.svg",
+  "static/media/romantic.svg": "static/media/romantic.d1871344.svg"
 }

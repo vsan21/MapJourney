@@ -1,7 +1,7 @@
 /* Map styling */
 .app {
-    border: 5px solid purple;
     display: flex;
+    border: 3px solid red;
 }
   
 .map {
@@ -10,7 +10,7 @@
 
 .address-form {
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     text-align: center;
     width: 100%;
 }
@@ -34,7 +34,7 @@
     border: 2px solid black;
     text-align: center;
     padding-top: 3%;
-    margin-top: 10%;
+    /* margin-top: 0.5%; */
 }
 
 #driving {
@@ -51,6 +51,19 @@
 
 #bicycling {
     color: #9ACD32;
+}
+
+.directions-container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+#text-directions {
+    height: 100%;
+    width: 90%;
+    overflow: scroll;
 }
 
 /* 'Get Directions' button */

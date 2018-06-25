@@ -7,16 +7,26 @@ require('dotenv').config();
 const { body, validationResult } = require('express-validator/check');
 //Body Parser: allow us to grab information from POST (extract JSON out of it)
 const bodyParser = require('body-parser');
+
+const port = process.env.PORT || 8000
 //make mysql connection available to query
 const connection = require('./database/connection.js');
 const app = express();
 
-//KEYS 
-const YELP_API_KEY = process.env.YELP_API_KEY;
+//KEY 
+let YELP_API_KEY;
+if(process.env.NODE_ENV === 'development') {
+	YELP_API_KEY = process.env.YELP_DEV_API_KEY;
+} else {
+	YELP_API_KEY = process.env.YELP_PROD_API_KEY;
+}
 
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//serves the build folder
+app.use(express.static("client/build"));
 
 //get city coordinates to create map
 app.get('/citycoords', (req, res) => {
@@ -133,5 +143,4 @@ app.post('/userData', (req, res) => {
 	})
 })
 
-const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Listening on port ${port}`));

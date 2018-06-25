@@ -4,10 +4,17 @@
   "description": "Whether it be road trips, domestic, international, or even staycations in your own city, let MapJourney help you map out and route any future travels with ease, seemingly taking away the frustration out of travel planning and allowing you to enjoy your vacations once again. ",
   "author": "Vivian San",
   "license": "MIT",
+  "engines": {
+    "node": "10.1.0",
+    "yarn": "1.7.0"
+  },
   "scripts": {
-    "start": "concurrently \"yarn server\" \"yarn client\"",
     "client": "cd client && yarn start",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "dev-start": "export NODE_ENV=development && concurrently \"yarn server\" \"yarn client\"",
+    "start": "node server.js",
+    "heroku-prebuild": "yarn",
+    "heroku-postbuild": "cd client && yarn && rm -rf build/ && yarn build"
   },
   "dependencies": {
     "axios": "^0.18.0",
