@@ -94,7 +94,7 @@ Whether it be road trips, domestic, international, or even staycations in your o
 - [x] Custom map category icons 
 - [x] Route travel between pins based on multiple modes of transportation
 - [x] Change the color of the different travel routes 
-- [ ] Display directions summary on side panel (itinerary-like list) 
+- [x] Display directions summary on side panel (itinerary-like list) 
 
 ### Later features: 
 - Save user's routes into db 
