@@ -278,6 +278,7 @@ export class Map extends Component {
 		}, (response, status) => {
 			if (status === 'OK') {
 				directionsDisplay.setDirections(response);
+				directionsDisplay.setPanel(document.getElementById('text-directions'));
 
 			} else {
 				window.alert('Directions request failed due to ' + status);
