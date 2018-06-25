@@ -100,12 +100,7 @@ export class Map extends Component {
 				preserveViewport: true
 			});
 			let directionsService = new google.maps.DirectionsService();
-			
 			directionsDisplay.setMap(this.map);
-			
-			//make directionsDisplay & directionsService accessible everywhere
-			// this.setState({directionsDisplay: directionsDisplay, directionsService: directionsService});
-
 
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
@@ -248,9 +243,9 @@ export class Map extends Component {
 			travelMode: this.props.google.maps.TravelMode[mode]
 		}, (response, status) => {
 
+			//once the previous route displays, create a new DirectionsRenderer (so that each is a separate call and all displays) --> both map route and text directions for each
 			if(status === 'OK') {
 				directionsDisplay.setDirections(response);
-
 
 				this.setState({start: previousDestinationToOrigin});
 				let dirDisplay = new this.props.google.maps.DirectionsRenderer({
@@ -263,7 +258,10 @@ export class Map extends Component {
 						strokeWeight: 6
 					}
 				})
-				dirDisplay.setDirections(response)
+
+				//creating the route on map AND giving text directions for each. 
+				dirDisplay.setDirections(response);
+				dirDisplay.setPanel(document.getElementById('text-directions'));
 				
 			} else {
 				window.alert("Directions failed due to " + status);
@@ -280,6 +278,7 @@ export class Map extends Component {
 		}, (response, status) => {
 			if (status === 'OK') {
 				directionsDisplay.setDirections(response);
+
 			} else {
 				window.alert('Directions request failed due to ' + status);
 			}
@@ -290,14 +289,13 @@ export class Map extends Component {
 
 		const mapStyle = {
 			width: this.state.mapWidth,
-			height: '90vh',
-			border: '2px solid yellow'
+			height: '90vh'
 		}
 
 		const rightPanel = {
 			width: this.state.panelWidth,
-			border: '2px solid orange',
-			display: this.state.panelDisplay
+			display: this.state.panelDisplay,
+			height: '90vh'
 		}
 
 		return (	
@@ -328,6 +326,11 @@ export class Map extends Component {
 							<p><strong>WALKING</strong>: <span id='walking'>purple</span></p>
 							<p><strong>BICYCLING</strong>: <span id='bicycling'>green</span></p>
 						</div>
+
+						<div className='directions-container'>
+							<div id="text-directions"></div>
+						</div>
+				
 					</div>
 					
 				</div>
