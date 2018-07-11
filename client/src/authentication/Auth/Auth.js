@@ -13,10 +13,10 @@ if(process.env.NODE_ENV === 'development') {
 	redirectUri = process.env.REACT_APP_AUTH0_DEV_CALLBACK_URL;
 	audience = `https://${process.env.REACT_APP_AUTH0_DEV_DOMAIN}/userinfo`;
 } else {
-	domain = process.env.REACT_APP_AUTH0_PROD_DOMAIN;
-	clientID = process.env.REACT_APP_AUTH0_PROD_CLIENT_ID;
-	redirectUri = process.env.REACT_APP_AUTH0_PROD_CALLBACK_URL;
-	audience = `https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
+	domain = 'wispy-field-6383.auth0.com'//process.env.REACT_APP_AUTH0_PROD_DOMAIN;
+	clientID = '1RIRqUWJjC8JFSgxD0R8I_5rxDLdItCv'//process.env.REACT_APP_AUTH0_PROD_CLIENT_ID;
+	redirectUri = 'https://map-journey.herokuapp.com/callback'//process.env.REACT_APP_AUTH0_PROD_CALLBACK_URL;
+	audience = 'https://map-journey.herokuapp.com/userinfo' //`https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
 }
 
 export default class Auth {

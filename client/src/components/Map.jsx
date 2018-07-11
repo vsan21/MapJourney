@@ -248,6 +248,8 @@ export class Map extends Component {
 				directionsDisplay.setDirections(response);
 
 				this.setState({start: previousDestinationToOrigin});
+
+				//call the DirectionsRenderer on each 
 				let dirDisplay = new this.props.google.maps.DirectionsRenderer({
 					map: this.state.map,
 					suppressMarkers: true,
