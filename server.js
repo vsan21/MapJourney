@@ -14,12 +14,12 @@ const connection = require('./database/connection.js');
 const app = express();
 
 //KEY 
-let YELP_API_KEY;
-if(process.env.NODE_ENV === 'development') {
-	YELP_API_KEY = process.env.YELP_DEV_API_KEY;
-} else {
-	YELP_API_KEY = process.env.YELP_PROD_API_KEY;
-}
+// let YELP_API_KEY;
+// if(process.env.NODE_ENV === 'development') {
+// 	YELP_API_KEY = process.env.YELP_DEV_API_KEY;
+// } else {
+// 	YELP_API_KEY = process.env.YELP_PROD_API_KEY;
+// }
 
 if(process.env.NODE_ENV === 'production') {
 	//Serve any static files
@@ -74,7 +74,7 @@ app.post('/results', (req, res) => {
 			'location': req.body.location
 		},
 		headers: {
-			'Authorization': `Bearer ${YELP_API_KEY}`
+			'Authorization': `Bearer ${process.env.YELP_API_KEY}`
 		}
 	})
 		.then((result) => {
