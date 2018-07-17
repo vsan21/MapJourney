@@ -19,6 +19,8 @@ import auth0 from 'auth0-js';
 // 	audience = `https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
 // }
 
+console.log(process.env.REACT_APP_AUTH0_DOMAIN, process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_CALLBACK_URL);
+
 export default class Auth {
 	auth0 = new auth0.WebAuth({
 		domain: process.env.REACT_APP_AUTH0_DOMAIN,
