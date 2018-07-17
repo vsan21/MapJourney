@@ -13,30 +13,18 @@ const port = process.env.PORT || 8000
 const connection = require('./database/connection.js');
 const app = express();
 
-//KEY 
-// let YELP_API_KEY;
-// if(process.env.NODE_ENV === 'development') {
-// 	YELP_API_KEY = process.env.YELP_DEV_API_KEY;
-// } else {
-// 	YELP_API_KEY = process.env.YELP_PROD_API_KEY;
-// }
-
-if(process.env.NODE_ENV === 'production') {
-	//Serve any static files
+if (process.env.NODE_ENV === 'production') {
+	// Serve any static files
 	app.use(express.static(path.join(__dirname, 'client/build')));
-
-	//Handle React routing, return all requests to React app
-	app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+	// Handle React routing, return all requests to React app
+	app.get('*', function(req, res) {
+	  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 	});
-}
+  }
 
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-//serves the build folder
-// app.use(express.static("client/build"));
 
 //get city coordinates to create map
 app.get('/citycoords', (req, res) => {
