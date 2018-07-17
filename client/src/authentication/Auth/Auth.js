@@ -1,30 +1,30 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
 
-let domain;
-let clientID;
-let redirectUri;
-let audience;
+// let domain;
+// let clientID;
+// let redirectUri;
+// let audience;
 
 //be able to run locally or heroku local
-if(process.env.NODE_ENV === 'development') {
-	domain = process.env.REACT_APP_AUTH0_DEV_DOMAIN;
-	clientID = process.env.REACT_APP_AUTH0_DEV_CLIENT_ID;
-	redirectUri = process.env.REACT_APP_AUTH0_DEV_CALLBACK_URL;
-	audience = `https://${process.env.REACT_APP_AUTH0_DEV_DOMAIN}/userinfo`;
-} else {
-	domain = 'wispy-field-6383.auth0.com'//process.env.REACT_APP_AUTH0_PROD_DOMAIN;
-	clientID = '1RIRqUWJjC8JFSgxD0R8I_5rxDLdItCv'//process.env.REACT_APP_AUTH0_PROD_CLIENT_ID;
-	redirectUri = 'https://map-journey.herokuapp.com/callback'//process.env.REACT_APP_AUTH0_PROD_CALLBACK_URL;
-	audience = 'https://map-journey.herokuapp.com/userinfo' //`https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
-}
+// if(process.env.NODE_ENV === 'development') {
+// 	domain = process.env.REACT_APP_AUTH0_DEV_DOMAIN;
+// 	clientID = process.env.REACT_APP_AUTH0_DEV_CLIENT_ID;
+// 	redirectUri = process.env.REACT_APP_AUTH0_DEV_CALLBACK_URL;
+// 	audience = `https://${process.env.REACT_APP_AUTH0_DEV_DOMAIN}/userinfo`;
+// } else {
+// 	domain = process.env.REACT_APP_AUTH0_PROD_DOMAIN;
+// 	clientID = process.env.REACT_APP_AUTH0_PROD_CLIENT_ID;
+// 	redirectUri = process.env.REACT_APP_AUTH0_PROD_CALLBACK_URL;
+// 	audience = `https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
+// }
 
 export default class Auth {
 	auth0 = new auth0.WebAuth({
-		domain: domain,
-		clientID: clientID,
-		redirectUri: redirectUri,
-		audience: audience,
+		domain: process.env.REACT_APP_AUTH0_DOMAIN,
+		clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+		redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+		audience: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`,
 		responseType: 'token id_token',
 		scope: 'openid profile email'
 	});
