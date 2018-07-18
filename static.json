@@ -1,0 +1,8 @@
+{
+  "root": "client/build",
+  "clean_urls": true,
+  "error_page": "/404",
+  "routes": {
+    "/*": "index.html"
+  }
+}

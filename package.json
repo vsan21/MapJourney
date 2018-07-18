@@ -14,7 +14,7 @@
     "dev-start": "export NODE_ENV=development && concurrently \"yarn server\" \"yarn client\"",
     "start": "node server.js",
     "heroku-prebuild": "yarn",
-    "heroku-postbuild": "cd client && yarn && rm -rf build/ && yarn build"
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && rm -rf build && npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",

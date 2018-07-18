@@ -103,8 +103,6 @@ export class NavBar extends Component {
 						<Navbar.Toggle />
 					</Navbar.Header>
 					<Navbar.Collapse>
-
-
 						<Nav pullRight>
 							{
 								isAuthenticated() && (
