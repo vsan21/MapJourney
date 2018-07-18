@@ -1,24 +1,6 @@
 import history from '../../history';
 import auth0 from 'auth0-js';
 
-// let domain;
-// let clientID;
-// let redirectUri;
-// let audience;
-
-//be able to run locally or heroku local
-// if(process.env.NODE_ENV === 'development') {
-// 	domain = process.env.REACT_APP_AUTH0_DEV_DOMAIN;
-// 	clientID = process.env.REACT_APP_AUTH0_DEV_CLIENT_ID;
-// 	redirectUri = process.env.REACT_APP_AUTH0_DEV_CALLBACK_URL;
-// 	audience = `https://${process.env.REACT_APP_AUTH0_DEV_DOMAIN}/userinfo`;
-// } else {
-// 	domain = process.env.REACT_APP_AUTH0_PROD_DOMAIN;
-// 	clientID = process.env.REACT_APP_AUTH0_PROD_CLIENT_ID;
-// 	redirectUri = process.env.REACT_APP_AUTH0_PROD_CALLBACK_URL;
-// 	audience = `https://${process.env.REACT_APP_AUTH0_PROD_DOMAIN}/userinfo`;
-// }
-
 console.log(process.env.REACT_APP_AUTH0_DOMAIN, process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_CALLBACK_URL);
 
 export default class Auth {
