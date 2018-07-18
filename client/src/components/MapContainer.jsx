@@ -3,13 +3,6 @@ import { GoogleApiWrapper } from 'google-maps-react';
 import { Map } from './Map';
 import { NavBar } from './NavBar';
 
-// let GOOGLE_API_KEY;
-// if(process.env.NODE_ENV === 'development') {
-// 	GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_DEV_API_KEY;
-// } else {
-// 	GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_PROD_API_KEY;
-// }
-
 export class MapContainer extends Component {
 	render() {
 		return (

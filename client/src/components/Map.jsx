@@ -74,7 +74,10 @@ export class Map extends Component {
 			const mapRef = this.refs.map;
 			//Finds that exact div in the React DOM
 			const node = ReactDOM.findDOMNode(mapRef);
-			
+			if(this.props.city[0].coordinates === undefined) {
+				alert('Maps is currently not working. Please try again later.');
+			} 
+
 			const city = this.props.city[0].coordinates;
 			//map options/configurations (zoom + center)
 			const mapConfig = Object.assign({}, {
@@ -82,6 +85,7 @@ export class Map extends Component {
 				zoom: 11,
 				styles: styles 
 			})
+			
 
 			//creating a new Map (var map = new google.maps.Map(document.getElementById('map'), options)
 			this.map = new maps.Map(node, mapConfig);
@@ -101,6 +105,7 @@ export class Map extends Component {
 			});
 			let directionsService = new google.maps.DirectionsService();
 			directionsDisplay.setMap(this.map);
+		
 
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
