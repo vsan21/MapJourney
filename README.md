@@ -1,5 +1,5 @@
 # MapJourney
-Whether it be road trips, domestic, international, or even staycations in your own city, let MapJourney help you map out and route any future travels with ease, seemingly taking away the frustration out of travel planning and allowing you to enjoy your vacations once again. 
+MapJourney extends the functionalities of Google Maps and allow users to map out their future travels with ease, PLUS give them the ability to route based on multiple modes of transportation.  
 
 **_Tech Stack_**: MySQL, Express, React, Node 
 
