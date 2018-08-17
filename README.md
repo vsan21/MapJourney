@@ -1,7 +1,13 @@
 # MapJourney
-MapJourney extends the functionalities of Google Maps and allow users to map out their future travels with ease, PLUS give them the ability to route based on multiple modes of transportation.  
+_MapJourney_ is a platform that extends the functionalities of Google Maps and allow users to map out their future travels with customization, PLUS give them the ability to route using multiple modes of transportation. 
 
-**_Tech Stack_**: MySQL, Express, React, Node 
+More specifically, for any given trip with many destinations, Google Maps only allows selection of one type of transportation at a time, but _MapJourney_ allows users to alternate between the different types (i.e. driving, walking, bicycling, and transit) simultaneously and with unseeming ease. 
+
+**_Video Demo_**: https://drive.google.com/file/d/1igYn9z4X_KZ52tdOgRM7OTgkPOYGtuPk/view?usp=sharing
+
+---
+
+**_Tech Stack_**: React.js, Express.js, MySQL, Node.js 
 
 **_APIs_**: Yelp, Google Maps, Google Directions, Google Geocode, Auth0
 
