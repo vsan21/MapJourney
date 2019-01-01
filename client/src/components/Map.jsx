@@ -18,8 +18,6 @@ export class Map extends Component {
 		panelDisplay: 'none',
 		map: '',
 		geocoder: '',
-		// directionsDisplay: '',
-		// directionsService: '',
 		start: '',
 		segmentOrigin: '',
 		end: '',
@@ -65,7 +63,7 @@ export class Map extends Component {
 		//this.props.google = maps object (contains all the map info)
 		if (this.props && this.props.google) {
 			const { google } = this.props;
-			//google.maps (or this.props.google.maps) = map object
+			//google.maps (or this.props.maps) = map object
 			const maps = google.maps;
 
 			// Here we define both so that we can use it later to create new Markers, InfoWindows, etc. (i.e. google.maps.Marker)
@@ -98,12 +96,12 @@ export class Map extends Component {
             centerControlDiv.index = 1;
             this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
+			let directionsService = new google.maps.DirectionsService();
             let directionsDisplay = new google.maps.DirectionsRenderer({
 				suppressMarkers: true, 
 				suppressBicyclingLayer: true,
 				preserveViewport: true
 			});
-			let directionsService = new google.maps.DirectionsService();
 			directionsDisplay.setMap(this.map);
 		
 
@@ -177,7 +175,7 @@ export class Map extends Component {
 						selected.onchange = () => {
 							const selectedMode = selected.options[selected.selectedIndex].value;
 
-							this.calculateAndDisplayRoute(directionsService, directionsDisplay, selectedMode);
+							this.calculateAndDisplayRoute(directionsService, selectedMode);
 						}
 					});
 
@@ -227,7 +225,7 @@ export class Map extends Component {
 		})
 	}
 
-	calculateAndDisplayRoute = (directionsService, directionsDisplay, mode) => {
+	calculateAndDisplayRoute = (directionsService, mode) => {
 		const travelMode = {
 			'TRANSIT': '#ffb84d',
 			'WALKING': '#d633ff',
@@ -248,13 +246,10 @@ export class Map extends Component {
 			travelMode: this.props.google.maps.TravelMode[mode]
 		}, (response, status) => {
 
-			//once the previous route displays, create a new DirectionsRenderer (so that each is a separate call and all displays) --> both map route and text directions for each
+			//once the previous route displays, instantiate DirectionsRenderer (so that each is a separate call and all displays) --> both map route and text directions for each
 			if(status === 'OK') {
-				directionsDisplay.setDirections(response);
-
 				this.setState({start: previousDestinationToOrigin});
 
-				//call the DirectionsRenderer on each 
 				let dirDisplay = new this.props.google.maps.DirectionsRenderer({
 					map: this.state.map,
 					suppressMarkers: true,
