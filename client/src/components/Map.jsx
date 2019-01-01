@@ -104,7 +104,6 @@ export class Map extends Component {
 			});
 			directionsDisplay.setMap(this.map);
 		
-
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
 			this.props.places.forEach(place => {
