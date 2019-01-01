@@ -18,8 +18,6 @@ export class Map extends Component {
 		panelDisplay: 'none',
 		map: '',
 		geocoder: '',
-		// directionsDisplay: '',
-		// directionsService: '',
 		start: '',
 		segmentOrigin: '',
 		end: '',
@@ -97,16 +95,15 @@ export class Map extends Component {
             const centerControlDiv = document.getElementById('control-div');
             centerControlDiv.index = 1;
             this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-
-            let directionsDisplay = new google.maps.DirectionsRenderer({
-				suppressMarkers: true, 
-				suppressBicyclingLayer: true,
-				preserveViewport: true
-			});
-			let directionsService = new google.maps.DirectionsService();
-			directionsDisplay.setMap(this.map);
 		
-
+	    let directionsService = new google.maps.DirectionsService();
+            let directionsDisplay = new google.maps.DirectionsRenderer({
+		suppressMarkers: true, 
+		suppressBicyclingLayer: true,
+		preserveViewport: true
+	    });
+	    directionsDisplay.setMap(this.map);
+		
 			//ADD MARKER
 			//iterate through each location in state (for each, create a marker). Takes 'position' and 'map'
 			this.props.places.forEach(place => {
@@ -248,9 +245,8 @@ export class Map extends Component {
 			travelMode: this.props.google.maps.TravelMode[mode]
 		}, (response, status) => {
 
-			//once the previous route displays, create a new DirectionsRenderer (so that each is a separate call and all displays) --> both map route and text directions for each
+			//once the previous route displays, instantiate DirectionsRenderer (so that each is a separate call and all displays) --> both map route and text directions for each
 			if(status === 'OK') {
-				directionsDisplay.setDirections(response);
 
 				this.setState({start: previousDestinationToOrigin});
 
